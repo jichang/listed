@@ -1,0 +1,9 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "feblr",
+    "password": "feblr",
+    "host": "localhost",
+    "database": "feblr"
+  }
+}

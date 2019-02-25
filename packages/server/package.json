@@ -22,6 +22,8 @@
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
     "@proveit/shared": "file:../shared",
+    "db-migrate": "^0.11.5",
+    "db-migrate-pg": "^0.5.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.2",
