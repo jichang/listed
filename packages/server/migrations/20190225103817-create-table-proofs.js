@@ -15,20 +15,23 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.runSql(`CREATE TABLE IF NOT EXISTS proveit.users(
+  return db.runSql(`CREATE TABLE IF NOT EXISTS proveit.proofs(
     id BIGSERIAL,
-    open_id UUID,
+    user_id BIGINT NOT NULL,
+    conclusion_id BIGINT NOT NULL,
+    content VARCHAR NOT NULL,
     created_time TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     updated_time TIMESTAMP WITH TIME ZONE,
     removed_time TIMESTAMP WITH TIME ZONE,
     status INTEGER DEFAULT 0,
-    CONSTRAINT users_pkey PRIMARY KEY (id),
-    CONSTRAINT users_open_id_key UNIQUE (open_id)
+    CONSTRAINT proofs_pkey PRIMARY KEY (id),
+    CONSTRAINT proofs_user_id_fkey FOREIGN KEY (user_id) REFERENCES proveit.users (id) ON UPDATE NO ACTION ON DELETE CASCADE,
+    CONSTRAINT proofs_conclusion_id_fkey FOREIGN KEY (conclusion_id) REFERENCES proveit.conclusions (id) ON UPDATE NO ACTION ON DELETE CASCADE
   )`);
 };
 
 exports.down = function(db) {
-  return db.runSql(`DROP TABLE proveit.users`);
+  return db.runSql(`DROP TABLE proveit.proofs`);
 };
 
 exports._meta = {

@@ -17,13 +17,13 @@ exports.setup = function(options, seedLink) {
 exports.up = function(db) {
   return db.runSql(`CREATE TABLE IF NOT EXISTS proveit.users(
     id BIGSERIAL,
-    open_id UUID,
+    open_id UUID NOT NULL,
     created_time TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     updated_time TIMESTAMP WITH TIME ZONE,
     removed_time TIMESTAMP WITH TIME ZONE,
     status INTEGER DEFAULT 0,
     CONSTRAINT users_pkey PRIMARY KEY (id),
-    CONSTRAINT users_open_id_key UNIQUE (open_id)
+    CONSTRAINT users_open_id_ukey UNIQUE (open_id)
   )`);
 };
 
