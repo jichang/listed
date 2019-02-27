@@ -1,0 +1,18 @@
+import React from "react";
+import { ITopic } from "@proveit/shared";
+import { Link } from "react-router-dom";
+
+export interface ITopicProps {
+  topic: ITopic;
+}
+
+export class Topic extends React.Component<ITopicProps> {
+  render() {
+    const { topic } = this.props;
+    return (
+      <div>
+        <h4>{topic.title}</h4>
+      </div>
+    );
+  }
+}
