@@ -14,7 +14,7 @@ export class TopicListItem extends React.Component<ITopicListItemProps> {
     return (
       <div className="list__item list__item--topic">
         <Topic topic={item} />
-        <Link to={`/topic/${item.id}`}>Details</Link>
+        <Link to={`/topics/${item.id}`}>Details</Link>
       </div>
     );
   }

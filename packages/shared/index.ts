@@ -8,6 +8,10 @@ export interface ICollection<T> {
   items: T[];
 }
 
+export type Option<T> = T | null;
+
+export type LoadingState = "idle" | "loading" | "succeed" | "failed";
+
 export interface IUser {
   id: number;
   title: string;
