@@ -2,15 +2,19 @@ import React from "react";
 import { IProof } from "@proveit/shared";
 
 export interface IProofProps {
+  index: number;
   proof: IProof;
 }
 
 export class Proof extends React.Component<IProofProps> {
   render() {
-    const { proof } = this.props;
+    const { index, proof } = this.props;
     return (
       <div>
-        <h4>{proof.content}</h4>
+        <p>
+          <span>{index + 1}. </span>
+          {proof.content}
+        </p>
       </div>
     );
   }

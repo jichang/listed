@@ -1,0 +1,7 @@
+[postgres]
+addr=""
+
+[oauth]
+server_api=""
+client_id=""
+client_secret=""

@@ -1,0 +1,12 @@
+.list__item--topic {
+  margin-top: 3rem;
+}
+
+.link,
+.timestamp {
+  font-size: 0.75rem;
+}
+
+.timestamp {
+  color: rgba(0, 0, 0, 0.5);
+}

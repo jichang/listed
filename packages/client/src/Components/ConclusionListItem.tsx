@@ -15,7 +15,7 @@ export class ConclusionListItem extends React.Component<
   render() {
     const { item } = this.props;
     return (
-      <div className="list__item list__item--Conclusion">
+      <div className="list__item list__item--conclusion">
         <Conclusion conclusion={item} />
         <List
           keyProp="id"

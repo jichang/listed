@@ -5,9 +5,9 @@ var type;
 var seed;
 
 /**
-  * We receive the dbmigrate dependency from dbmigrate initially.
-  * This enables us to not have to rely on NODE_PATH.
-  */
+ * We receive the dbmigrate dependency from dbmigrate initially.
+ * This enables us to not have to rely on NODE_PATH.
+ */
 exports.setup = function(options, seedLink) {
   dbm = options.dbmigrate;
   type = dbm.dataType;
@@ -19,6 +19,8 @@ exports.up = function(db) {
     id BIGSERIAL,
     user_id BIGINT NOT NULL,
     title VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
+    type INTEGER NOT NULL,
     created_time TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     updated_time TIMESTAMP WITH TIME ZONE,
     removed_time TIMESTAMP WITH TIME ZONE,
@@ -33,5 +35,5 @@ exports.down = function(db) {
 };
 
 exports._meta = {
-  "version": 1
+  version: 1,
 };

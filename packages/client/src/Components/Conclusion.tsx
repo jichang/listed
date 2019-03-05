@@ -9,8 +9,8 @@ export class Conclusion extends React.Component<IConclusionProps> {
   render() {
     const { conclusion } = this.props;
     return (
-      <div>
-        <h4>{conclusion.title}</h4>
+      <div className="conclusion">
+        <h4 className="conclusion__title">{conclusion.title}</h4>
       </div>
     );
   }

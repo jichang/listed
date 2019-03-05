@@ -3,6 +3,11 @@ export interface IPaginatorParams {
   offset: number;
 }
 
+export interface OAuthParams {
+  code: string;
+  state: string;
+}
+
 export interface ICollection<T> {
   total: number;
   items: T[];
@@ -13,31 +18,54 @@ export type Option<T> = T | null;
 export type LoadingState = "idle" | "loading" | "succeed" | "failed";
 
 export interface IUser {
-  id: number;
-  title: string;
+  id: string;
+  open_id: string;
   created_time: string;
   status: number;
+}
+
+export interface ISession {
+  user: Option<IUser>;
+}
+
+export type TopicType = "public" | "private";
+
+export interface ITopicCreateParams {
+  title: string;
+  description: string;
+  type: TopicType;
 }
 
 export interface ITopic {
-  id: number;
+  id: string;
   title: string;
+  description: string;
+  type: TopicType;
   created_time: string;
-  conclusions: ICollection<IConclusion>;
+  updated_time: string;
   status: number;
 }
 
+export interface IConclusionCreateParams {
+  title: string;
+  proofs: {
+    content: string;
+  }[];
+}
+
 export interface IConclusion {
-  id: number;
+  id: string;
   title: string;
   created_time: string;
+  updated_time: string;
   proofs: ICollection<IProof>;
   status: number;
 }
 
 export interface IProof {
-  id: number;
+  id: string;
   content: string;
   created_time: string;
+  updated_time: string;
   status: number;
 }

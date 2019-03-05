@@ -10,10 +10,10 @@ export interface IProofListItemProps {
 
 export class ProofListItem extends React.Component<IProofListItemProps> {
   render() {
-    const { item } = this.props;
+    const { item, index } = this.props;
     return (
       <div className="list__item list__item--proof">
-        <Proof proof={item} />
+        <Proof proof={item} index={index} />
       </div>
     );
   }

@@ -1,0 +1,47 @@
+.form {
+  margin: 0 auto;
+
+  width: 30rem;
+}
+
+.form__field {
+  margin: 1rem 0;
+}
+
+.form__field__label {
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.form__control {
+  padding: 0.5rem;
+
+  width: 100%;
+}
+
+.form__field.form__field--action {
+  margin-top: 1.5rem;
+}
+
+.button {
+  padding: 0.5rem;
+
+  font-size: 1rem;
+
+  text-align: center;
+}
+
+.button--block {
+  width: 100%;
+}
+
+.button--primary {
+  color: white;
+
+  background: black;
+}
+
+.button--outline {
+  border: 1px solid black;
+  color: black;
+}
