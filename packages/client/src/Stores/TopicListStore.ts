@@ -5,7 +5,7 @@ import { PageChangeEvent } from "../Components/Pagination";
 export class TopicCollectionStore {
   @observable paginator: IPaginatorParams = {
     offset: 0,
-    limit: 50
+    limit: 20
   };
   @observable collection: ICollection<ITopic> = {
     total: 0,

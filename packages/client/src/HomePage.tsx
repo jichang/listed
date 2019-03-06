@@ -24,7 +24,7 @@ export class HomePage extends Component {
         />
         <Pagination
           total={topicCollectionStore.collection.total}
-          pageSize={topicCollectionStore.paginator.offset}
+          pageSize={topicCollectionStore.paginator.limit}
           onChange={topicCollectionStore.updatePaginator}
         />
       </div>

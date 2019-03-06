@@ -5,6 +5,11 @@ export class TopicCreateStore {
   @observable title: string = "";
   @observable description: string = "";
   @observable type: TopicType = "public";
+  @observable errors = {
+    title: "",
+    description: "",
+    type: ""
+  };
 
   @action.bound
   async create() {

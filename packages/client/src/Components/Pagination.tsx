@@ -21,29 +21,33 @@ export class Pagination extends React.Component<Props, State> {
   };
 
   gotoPrev() {
-    this.setState(
-      {
-        page: this.state.page - 1
-      },
-      () => {
-        this.props.onChange({
-          page: this.state.page
-        });
-      }
-    );
+    if (this.state.page > 0) {
+      this.setState(
+        {
+          page: this.state.page - 1
+        },
+        () => {
+          this.props.onChange({
+            page: this.state.page
+          });
+        }
+      );
+    }
   }
 
   gotoNext() {
-    this.setState(
-      {
-        page: this.state.page + 1
-      },
-      () => {
-        this.props.onChange({
-          page: this.state.page
-        });
-      }
-    );
+    if ((this.state.page + 1) * this.props.pageSize < this.props.total) {
+      this.setState(
+        {
+          page: this.state.page + 1
+        },
+        () => {
+          this.props.onChange({
+            page: this.state.page
+          });
+        }
+      );
+    }
   }
 
   render() {
@@ -53,6 +57,7 @@ export class Pagination extends React.Component<Props, State> {
           type="button"
           className="button button--outline"
           onClick={() => this.gotoPrev()}
+          disabled={this.state.page <= 0}
         >
           Prev
         </button>
@@ -61,6 +66,9 @@ export class Pagination extends React.Component<Props, State> {
           type="button"
           className="button button--outline"
           onClick={() => this.gotoNext()}
+          disabled={
+            (this.state.page + 1) * this.props.pageSize >= this.props.total
+          }
         >
           Next
         </button>
