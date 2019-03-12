@@ -1,4 +1,4 @@
-import { Option } from "@proveit/shared";
+import { Option } from "@listed/shared";
 
 export class Cache<K, V> {
   items: { key: K; val: V }[] = [];

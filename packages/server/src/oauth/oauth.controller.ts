@@ -1,5 +1,5 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { OAuthParams } from '@proveit/shared';
+import { OAuthParams } from '@listed/shared';
 import { OauthService } from './oauth.service';
 import { ConfigService } from 'src/config/config.service';
 import { AuthService } from 'src/auth/auth.service';

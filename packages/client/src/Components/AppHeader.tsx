@@ -10,14 +10,14 @@ export class AppHeader extends React.Component {
     return (
       <div className="app__header">
         <div className="app__header__content flex__box">
-          <h4 className="flex__item">Prove It!</h4>
+          <h4 className="flex__item">Listed!</h4>
           <div>
             {sessionStore.session.user ? (
               <NavLink className="button button--primary" to="/topics/create">
                 发布新主题
               </NavLink>
             ) : (
-              <a href="http://sso.feblr.org/oauth?client_id=8719268879841e29af3b53777eee5fad6d4aa4ec53d7098f57aa5d8fb779dd2113932a8a00a92672b4c7bcf25c413ac1eea807fa0bcb0d5690cc1eaee2c72fc7&server_id=81caaf26e210057d23ff00fab346f3ad9bc12522d276bbb5b6dee4381b9e4ef8ce97148bf993576f2902847fc192abd0477b364cd9414d5111229130ee92589c&scope_name=user_id&redirect_uri=http://proveit.feblr.org/oauth&response_type=code&state=test">
+              <a href="http://sso.feblr.org/oauth?client_id=8719268879841e29af3b53777eee5fad6d4aa4ec53d7098f57aa5d8fb779dd2113932a8a00a92672b4c7bcf25c413ac1eea807fa0bcb0d5690cc1eaee2c72fc7&server_id=81caaf26e210057d23ff00fab346f3ad9bc12522d276bbb5b6dee4381b9e4ef8ce97148bf993576f2902847fc192abd0477b364cd9414d5111229130ee92589c&scope_name=user_id&redirect_uri=http://listed.feblr.org/oauth&response_type=code&state=test">
                 登录
               </a>
             )}

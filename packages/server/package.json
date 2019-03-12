@@ -1,7 +1,7 @@
 {
-  "name": "@proveit/server",
+  "name": "@listed/server",
   "version": "0.0.0",
-  "description": "server side code for ProveIt",
+  "description": "server side code for Listed",
   "author": "Jacob Chang",
   "license": "MIT",
   "scripts": {
@@ -23,7 +23,7 @@
     "@nestjs/core": "^5.4.0",
     "@nestjs/jwt": "^0.3.0",
     "@nestjs/passport": "^5.1.0",
-    "@proveit/shared": "file:../shared",
+    "@listed/shared": "file:../shared",
     "axios": "^0.18.0",
     "db-migrate": "^0.11.5",
     "db-migrate-pg": "^0.5.0",

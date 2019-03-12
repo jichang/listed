@@ -1,5 +1,5 @@
 import { observable, action } from "mobx";
-import { ICollection, ITopic, IPaginatorParams } from "@proveit/shared";
+import { ICollection, ITopic, IPaginatorParams } from "@listed/shared";
 import { PageChangeEvent } from "../Components/Pagination";
 
 export class TopicCollectionStore {

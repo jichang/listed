@@ -4,7 +4,7 @@ import {
   IConclusionCreateParams,
   IConclusion,
   IUser,
-} from '@proveit/shared';
+} from '@listed/shared';
 import { DatabaseService } from 'src/database/database.service';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class ConclusionsService {
         created_time,
         updated_time,
         status
-      FROM proveit.conclusions
+      FROM listed.conclusions
       WHERE topic_id = $1
       OFFSET $2
       LIMIT $3
@@ -39,7 +39,7 @@ export class ConclusionsService {
       for (let row of rows) {
         let sql = `
         SELECT *
-        FROM proveit.proofs
+        FROM listed.proofs
         WHERE conclusion_id = $1
         `;
         let { rows } = await client.query(sql, [row.id]);
@@ -83,7 +83,7 @@ export class ConclusionsService {
     try {
       await client.query('BEGIN');
       let sql = `
-      INSERT INTO proveit.conclusions(user_id, topic_id, title)
+      INSERT INTO listed.conclusions(user_id, topic_id, title)
       VALUES ($1, $2, $3)
       RETURNING *
       `;
@@ -104,7 +104,7 @@ export class ConclusionsService {
 
       for (let proof of params.proofs) {
         let sql = `
-        INSERT INTO proveit.proofs(user_id, conclusion_id, content)
+        INSERT INTO listed.proofs(user_id, conclusion_id, content)
         VALUES ($1, $2, $3)
         RETURNING *`;
         let { rows } = await client.query(sql, [

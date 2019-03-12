@@ -14,7 +14,7 @@ import {
   ICollection,
   IPaginatorParams,
   IConclusionCreateParams,
-} from '@proveit/shared';
+} from '@listed/shared';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('/api/v1')

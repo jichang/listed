@@ -1,5 +1,5 @@
 {
-  "name": "@proveit/shared",
+  "name": "@listed/shared",
   "version": "0.0.0",
   "description": "shared code between client and server",
   "main": "index.js",

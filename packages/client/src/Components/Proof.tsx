@@ -1,5 +1,5 @@
 import React from "react";
-import { IProof } from "@proveit/shared";
+import { IProof } from "@listed/shared";
 
 export interface IProofProps {
   index: number;

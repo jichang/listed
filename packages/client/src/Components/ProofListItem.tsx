@@ -1,5 +1,5 @@
 import React from "react";
-import { IProof } from "@proveit/shared";
+import { IProof } from "@listed/shared";
 import { Proof } from "./Proof";
 import { Link } from "react-router-dom";
 

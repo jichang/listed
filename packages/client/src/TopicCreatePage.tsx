@@ -2,7 +2,7 @@ import React, { Component, FormEvent, ChangeEvent } from "react";
 import { observer } from "mobx-react";
 import "./TopicCreatePage.css";
 import { topicCreateStore } from "./Stores/TopicCreateStore";
-import { TopicType } from "@proveit/shared";
+import { TopicType } from "@listed/shared";
 
 @observer
 export class TopicCreatePage extends Component {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { OAuthParams, IUser } from '@proveit/shared';
+import { OAuthParams, IUser } from '@listed/shared';
 import axios from 'axios';
 import { ConfigService } from 'src/config/config.service';
 import { DatabaseService } from 'src/database/database.service';
@@ -33,7 +33,7 @@ export class OauthService {
     try {
       await client.query('BEGIN');
       let sql = `
-      INSERT INTO proveit.users(open_id)
+      INSERT INTO listed.users(open_id)
       VALUES ($1)
       ON CONFLICT ON CONSTRAINT users_open_id_ukey DO UPDATE SET updated_time = now()
       RETURNING *

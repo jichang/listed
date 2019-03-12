@@ -13,7 +13,7 @@ import {
   ICollection,
   ITopic,
   ITopicCreateParams,
-} from '@proveit/shared';
+} from '@listed/shared';
 import { TopicsService } from './topics.service';
 import { AuthGuard } from '@nestjs/passport';
 

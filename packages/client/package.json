@@ -1,9 +1,9 @@
 {
-  "name": "@proveit/client",
+  "name": "@listed/client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@proveit/shared": "file:../shared",
+    "@listed/shared": "file:../shared",
     "@types/jest": "24.0.6",
     "@types/node": "11.9.5",
     "@types/react": "16.8.4",

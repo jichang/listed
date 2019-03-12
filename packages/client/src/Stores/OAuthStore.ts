@@ -1,4 +1,4 @@
-import { OAuthParams } from "@proveit/shared";
+import { OAuthParams } from "@listed/shared";
 
 export type VerifyState = "idle" | "verify" | "succeed" | "failed";
 

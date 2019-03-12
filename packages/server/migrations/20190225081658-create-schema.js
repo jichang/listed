@@ -15,11 +15,11 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.runSql('CREATE SCHEMA IF NOT EXISTS proveit');
+  return db.runSql('CREATE SCHEMA IF NOT EXISTS listed');
 };
 
 exports.down = function(db) {
-  return db.runSql('DROP SCHEMA proveit');
+  return db.runSql('DROP SCHEMA listed');
 };
 
 exports._meta = {

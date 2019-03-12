@@ -1,5 +1,5 @@
 import { observable, action } from "mobx";
-import { TopicType } from "@proveit/shared";
+import { TopicType } from "@listed/shared";
 
 export class TopicCreateStore {
   @observable title: string = "";

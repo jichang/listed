@@ -1,5 +1,5 @@
 import React from "react";
-import { IConclusion } from "@proveit/shared";
+import { IConclusion } from "@listed/shared";
 import { Conclusion } from "./Conclusion";
 import { List } from "./List";
 import { ProofListItem } from "./ProofListItem";

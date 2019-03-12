@@ -6,7 +6,7 @@ import {
   LoadingState,
   Option,
   IPaginatorParams
-} from "@proveit/shared";
+} from "@listed/shared";
 
 export class TopicStore {
   @observable loadingStates: { [index: string]: LoadingState } = {};

@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.runSql(`CREATE TABLE IF NOT EXISTS proveit.conclusions(
+  return db.runSql(`CREATE TABLE IF NOT EXISTS listed.conclusions(
     id BIGSERIAL,
     user_id BIGINT NOT NULL,
     topic_id BIGINT NOT NULL,
@@ -25,13 +25,13 @@ exports.up = function(db) {
     removed_time TIMESTAMP WITH TIME ZONE,
     status INTEGER DEFAULT 0,
     CONSTRAINT conclusions_pkey PRIMARY KEY (id),
-    CONSTRAINT conclusions_user_id_fkey FOREIGN KEY (user_id) REFERENCES proveit.users (id) ON UPDATE NO ACTION ON DELETE CASCADE,
-    CONSTRAINT conclusions_topic_id_fkey FOREIGN KEY (topic_id) REFERENCES proveit.topics (id) ON UPDATE NO ACTION ON DELETE CASCADE
+    CONSTRAINT conclusions_user_id_fkey FOREIGN KEY (user_id) REFERENCES listed.users (id) ON UPDATE NO ACTION ON DELETE CASCADE,
+    CONSTRAINT conclusions_topic_id_fkey FOREIGN KEY (topic_id) REFERENCES listed.topics (id) ON UPDATE NO ACTION ON DELETE CASCADE
   )`);
 };
 
 exports.down = function(db) {
-  return db.runSql(`DROP TABLE proveit.conclusions`);
+  return db.runSql(`DROP TABLE listed.conclusions`);
 };
 
 exports._meta = {

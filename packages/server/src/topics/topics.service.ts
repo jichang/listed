@@ -6,7 +6,7 @@ import {
   ITopic,
   IUser,
   TopicType,
-} from '@proveit/shared';
+} from '@listed/shared';
 
 @Injectable()
 export class TopicsService {
@@ -25,7 +25,7 @@ export class TopicsService {
         created_time,
         updated_time,
         status
-      FROM proveit.topics
+      FROM listed.topics
       OFFSET $1
       LIMIT $2
       `;
@@ -63,7 +63,7 @@ export class TopicsService {
     let client = await this.databaseService.pool.connect();
     try {
       let sql = `
-      INSERT INTO proveit.topics(user_id, title, description, type)
+      INSERT INTO listed.topics(user_id, title, description, type)
       VALUES ($1, $2, $3, $4)
       RETURNING *
       `;
@@ -108,7 +108,7 @@ export class TopicsService {
         created_time,
         updated_time,
         status
-      FROM proveit.topics
+      FROM listed.topics
       WHERE id = $1
       `;
       let { rows } = await client.query(sql, [topicId]);

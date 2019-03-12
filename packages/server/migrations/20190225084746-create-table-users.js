@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.runSql(`CREATE TABLE IF NOT EXISTS proveit.users(
+  return db.runSql(`CREATE TABLE IF NOT EXISTS listed.users(
     id BIGSERIAL,
     open_id UUID NOT NULL,
     created_time TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
@@ -28,7 +28,7 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-  return db.runSql(`DROP TABLE proveit.users`);
+  return db.runSql(`DROP TABLE listed.users`);
 };
 
 exports._meta = {

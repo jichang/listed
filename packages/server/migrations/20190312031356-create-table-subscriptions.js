@@ -15,23 +15,22 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.runSql(`CREATE TABLE IF NOT EXISTS listed.topics(
+  return db.runSql(`CREATE TABLE IF NOT EXISTS listed.subscriptions(
     id BIGSERIAL,
     user_id BIGINT NOT NULL,
-    title VARCHAR NOT NULL,
-    description VARCHAR NOT NULL,
-    type INTEGER NOT NULL,
+    topic_id BIGINT NOT NULL,
     created_time TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     updated_time TIMESTAMP WITH TIME ZONE,
     removed_time TIMESTAMP WITH TIME ZONE,
     status INTEGER DEFAULT 0,
-    CONSTRAINT topics_pkey PRIMARY KEY (id),
-    CONSTRAINT topics_user_id_fkey FOREIGN KEY (user_id) REFERENCES listed.users (id) ON UPDATE NO ACTION ON DELETE CASCADE
+    CONSTRAINT subscriptions_pkey PRIMARY KEY (id),
+    CONSTRAINT subscriptions_user_id_fkey FOREIGN KEY (user_id) REFERENCES listed.users (id) ON UPDATE NO ACTION ON DELETE CASCADE,
+    CONSTRAINT subscriptions_topic_id_fkey FOREIGN KEY (topic_id) REFERENCES listed.topics (id) ON UPDATE NO ACTION ON DELETE CASCADE
   )`);
 };
 
 exports.down = function(db) {
-  return db.runSql(`DROP TABLE listed.topics`);
+  return db.runSql(`DROP TABLE listed.subscriptions`);
 };
 
 exports._meta = {

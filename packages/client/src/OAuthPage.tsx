@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import "./OAuthPage.css";
-import { ITopic } from "@proveit/shared";
+import { ITopic } from "@listed/shared";
 import { List } from "./Components/List";
 import { TopicListItem } from "./Components/TopicListItem";
 import { topicCollectionStore } from "./Stores/TopicListStore";

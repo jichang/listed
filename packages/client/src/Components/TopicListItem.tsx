@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ITopic } from "@proveit/shared";
+import { ITopic } from "@listed/shared";
 import "./TopicListItem.css";
 import { Topic } from "./Topic";
 

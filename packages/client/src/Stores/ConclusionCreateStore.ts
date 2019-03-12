@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 import { ChangeEvent, FormEvent } from "react";
-import { IProof } from "@proveit/shared";
+import { IProof } from "@listed/shared";
 
 export class ConclusionCreateStore {
   @observable topicId: string = "";
