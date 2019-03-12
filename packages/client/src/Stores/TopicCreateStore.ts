@@ -1,5 +1,5 @@
 import { observable, action } from "mobx";
-import { TopicType } from "@listed/shared";
+import { TopicType, ITopic } from "@listed/shared";
 
 export class TopicCreateStore {
   @observable title: string = "";
@@ -12,7 +12,7 @@ export class TopicCreateStore {
   };
 
   @action.bound
-  async create() {
+  async create(): Promise<ITopic> {
     let params = {
       title: this.title,
       description: this.description,
@@ -22,17 +22,23 @@ export class TopicCreateStore {
     try {
       let token = window.localStorage.getItem("auth.token");
       if (token) {
+        let body = JSON.stringify(params);
         let response = await fetch("/api/v1/topics", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(params)
-        });
+          body
+        }).then(response => response.json());
         this.reset();
+
+        return response as ITopic;
       }
-    } catch (e) {}
+      throw new Error("");
+    } catch (e) {
+      throw e;
+    }
   }
 
   @action.bound

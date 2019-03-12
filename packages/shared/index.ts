@@ -41,6 +41,7 @@ export interface ITopic {
   title: string;
   description: string;
   type: TopicType;
+  subscription: Option<ISubscription>;
   created_time: string;
   updated_time: string;
   status: number;
@@ -65,6 +66,13 @@ export interface IConclusion {
 export interface IProof {
   id: string;
   content: string;
+  created_time: string;
+  updated_time: string;
+  status: number;
+}
+
+export interface ISubscription {
+  id: string;
   created_time: string;
   updated_time: string;
   status: number;

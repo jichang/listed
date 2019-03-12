@@ -25,7 +25,8 @@ exports.up = function(db) {
     status INTEGER DEFAULT 0,
     CONSTRAINT subscriptions_pkey PRIMARY KEY (id),
     CONSTRAINT subscriptions_user_id_fkey FOREIGN KEY (user_id) REFERENCES listed.users (id) ON UPDATE NO ACTION ON DELETE CASCADE,
-    CONSTRAINT subscriptions_topic_id_fkey FOREIGN KEY (topic_id) REFERENCES listed.topics (id) ON UPDATE NO ACTION ON DELETE CASCADE
+    CONSTRAINT subscriptions_topic_id_fkey FOREIGN KEY (topic_id) REFERENCES listed.topics (id) ON UPDATE NO ACTION ON DELETE CASCADE,
+    CONSTRAINT subscriptions_user_id_topic_id_ukey UNIQUE (user_id, topic_id)
   )`);
 };
 

@@ -17,16 +17,18 @@ export class SessionStore {
     try {
       let token = window.localStorage.getItem("auth.token");
       if (token) {
+        let body = JSON.stringify({
+          token
+        });
         let response = await fetch("/api/v1/session", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            token
-          })
+          body
         }).then(response => response.json());
+
         this.update(response.user);
       } else {
         this.update(null);

@@ -3,13 +3,15 @@ import { observer } from "mobx-react";
 import "./TopicCreatePage.css";
 import { topicCreateStore } from "./Stores/TopicCreateStore";
 import { TopicType } from "@listed/shared";
+import { RouteComponentProps } from "react-router";
 
 @observer
-export class TopicCreatePage extends Component {
+export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
   async create(evt: FormEvent) {
     evt.preventDefault();
 
-    await topicCreateStore.create();
+    let topic = await topicCreateStore.create();
+    this.props.history.push(`/topics/${topic.id}`);
   }
 
   updateTitle = (evt: ChangeEvent<HTMLInputElement>) => {
