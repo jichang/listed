@@ -17,6 +17,8 @@ import { ConfigService } from './config/config.service';
 import { DatabaseService } from './database/database.service';
 import { AuthService, JwtStrategy } from './auth/auth.service';
 import { SessionController } from './session/session.controller';
+import { SubscriptionsController } from './subscriptions/subscriptions.controller';
+import { SubscriptionsService } from './subscriptions/subscriptions.service';
 
 @Module({
   imports: [
@@ -36,6 +38,7 @@ import { SessionController } from './session/session.controller';
     ProofsController,
     OauthController,
     SessionController,
+    SubscriptionsController,
   ],
   providers: [
     AppService,
@@ -51,6 +54,7 @@ import { SessionController } from './session/session.controller';
     DatabaseService,
     AuthService,
     JwtStrategy,
+    SubscriptionsService,
   ],
 })
 export class AppModule {}

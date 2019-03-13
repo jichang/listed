@@ -37,6 +37,11 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
           <span className="timestamp">
             发布于{topicStore.topic.created_time}
           </span>
+          {topicStore.topic.subscription ? (
+            <span onClick={topicStore.unsubscribe}>取消订阅</span>
+          ) : (
+            <span onClick={topicStore.subscribe}>立即订阅</span>
+          )}
         </div>
 
         <AdSense />

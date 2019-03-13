@@ -22,12 +22,12 @@ export class TopicsController {
   constructor(private readonly topicsService: TopicsService) {}
 
   @Get('/topics')
-  async getAll(@Query() paginatorParams: IPaginatorParams) {
+  async getAll(@Req() req, @Query() paginatorParams: IPaginatorParams) {
     let topics: ICollection<ITopic> = await this.topicsService.getAll(
+      req.user,
       paginatorParams,
     );
 
-    console.log(paginatorParams, topics);
     return topics;
   }
 
@@ -40,7 +40,8 @@ export class TopicsController {
   }
 
   @Get('/topics/:id')
-  async getOne(@Param() { id }: { id: string }) {
-    return await this.topicsService.select(id);
+  @UseGuards(AuthGuard())
+  async getOne(@Param() { id }: { id: string }, @Req() req) {
+    return await this.topicsService.select(req.user, id);
   }
 }

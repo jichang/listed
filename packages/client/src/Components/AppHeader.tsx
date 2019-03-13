@@ -17,7 +17,7 @@ export class AppHeader extends React.Component {
                 发布新主题
               </NavLink>
             ) : (
-              <a href="http://sso.feblr.org/oauth?client_id=8719268879841e29af3b53777eee5fad6d4aa4ec53d7098f57aa5d8fb779dd2113932a8a00a92672b4c7bcf25c413ac1eea807fa0bcb0d5690cc1eaee2c72fc7&server_id=81caaf26e210057d23ff00fab346f3ad9bc12522d276bbb5b6dee4381b9e4ef8ce97148bf993576f2902847fc192abd0477b364cd9414d5111229130ee92589c&scope_name=user_id&redirect_uri=http://listed.feblr.org/oauth&response_type=code&state=test">
+              <a href="http://sso.feblr.org/oauth?client_id=103377d7cb59de4d4bedc014d5528a6a86dfc3d0696f6da93db9991d5b7c31dd715071a340f4d01f2b57fd00fb2596774f1e7e976234a9f246cbee0df0a36af0&server_id=81caaf26e210057d23ff00fab346f3ad9bc12522d276bbb5b6dee4381b9e4ef8ce97148bf993576f2902847fc192abd0477b364cd9414d5111229130ee92589c&scope_name=user_id&redirect_uri=http://listed.feblr.org/oauth&response_type=code&state=test">
                 登录
               </a>
             )}

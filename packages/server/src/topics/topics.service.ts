@@ -12,7 +12,7 @@ import {
 export class TopicsService {
   constructor(private readonly databaseService: DatabaseService) {}
 
-  async getAll(paginatorParams: IPaginatorParams) {
+  async getAll(user: IUser, paginatorParams: IPaginatorParams) {
     let client = await this.databaseService.pool.connect();
     try {
       let sql = `
@@ -36,12 +36,13 @@ export class TopicsService {
 
       client.release();
 
-      let topics = rows.map(row => {
+      let topics: ITopic[] = rows.map(row => {
         return {
           id: row.id,
           title: row.title,
           description: row.description,
           type: (row.type === 0 ? 'private' : 'public') as TopicType,
+          subscription: null,
           created_time: row.created_time,
           updated_time: row.updated_time,
           status: row.status,
@@ -62,41 +63,64 @@ export class TopicsService {
   async create(user: IUser, params: ITopicCreateParams) {
     let client = await this.databaseService.pool.connect();
     try {
+      await client.query('BEGIN');
+
       let sql = `
       INSERT INTO listed.topics(user_id, title, description, type)
       VALUES ($1, $2, $3, $4)
       RETURNING *
       `;
-      let { rows } = await client.query(sql, [
+      let { rows: topicRows } = await client.query(sql, [
         user.id,
         params.title,
         params.description,
         params.type === 'public' ? 0 : 1,
       ]);
 
+      let topicRow = topicRows[0];
+
+      sql = `
+      INSERT INTO listed.subscriptions(user_id, topic_id)
+      VALUES ($1, $2)
+      RETURNING *
+      `;
+
+      let { rows: subscriptionRows } = await client.query(sql, [
+        user.id,
+        topicRow.id,
+      ]);
+
+      await client.query('COMMIT');
       client.release();
 
-      let row = rows[0];
+      let subscriptionRow = subscriptionRows[0];
       let topic: ITopic = {
-        id: row.id,
-        title: row.title,
-        description: row.description,
-        type: (row.type === 0 ? 'private' : 'public') as TopicType,
-        created_time: row.created_time,
-        updated_time: row.updated_time,
-        status: row.status,
+        id: topicRow.id,
+        title: topicRow.title,
+        description: topicRow.description,
+        type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
+        subscription: {
+          id: subscriptionRow.id,
+          created_time: subscriptionRow.created_time,
+          updated_time: subscriptionRow.updated_time,
+          status: subscriptionRow.status,
+        },
+        created_time: topicRow.created_time,
+        updated_time: topicRow.updated_time,
+        status: topicRow.status,
       };
 
       return {
         topic,
       };
     } catch (e) {
+      await client.query('ROLLBACK');
       client.release();
       throw e;
     }
   }
 
-  async select(topicId: string) {
+  async select(user: IUser, topicId: string) {
     let client = await this.databaseService.pool.connect();
     try {
       let sql = `
@@ -111,19 +135,47 @@ export class TopicsService {
       FROM listed.topics
       WHERE id = $1
       `;
-      let { rows } = await client.query(sql, [topicId]);
+      let { rows: topicRows } = await client.query(sql, [topicId]);
+
+      let topicRow = topicRows[0];
+
+      let subscription = null;
+      if (user) {
+        sql = `
+        SELECT
+          id,
+          created_time,
+          updated_time,
+          status
+        FROM listed.subscriptions
+        WHERE user_id = $1 AND topic_id = $2
+        `;
+        let { rows: subscriptionRows } = await client.query(sql, [
+          user.id,
+          topicId,
+        ]);
+        let subscriptionRow = subscriptionRows[0];
+        if (subscriptionRow) {
+          subscription = {
+            id: subscriptionRow.id,
+            created_time: subscriptionRow.created_time,
+            updated_time: subscriptionRow.updated_time,
+            status: subscriptionRow.status,
+          };
+        }
+      }
 
       client.release();
 
-      let row = rows[0];
       let topic: ITopic = {
-        id: row.id,
-        title: row.title,
-        description: row.description,
-        type: (row.type === 0 ? 'private' : 'public') as TopicType,
-        created_time: row.created_time,
-        updated_time: row.updated_time,
-        status: row.status,
+        id: topicRow.id,
+        title: topicRow.title,
+        description: topicRow.description,
+        type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
+        subscription,
+        created_time: topicRow.created_time,
+        updated_time: topicRow.updated_time,
+        status: topicRow.status,
       };
 
       return {
