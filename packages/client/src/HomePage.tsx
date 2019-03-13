@@ -16,7 +16,6 @@ export class HomePage extends Component {
   render() {
     return (
       <div className="page page--home">
-        <AdSense />
         <List
           keyProp="id"
           items={topicCollectionStore.collection.items}

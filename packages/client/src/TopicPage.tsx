@@ -7,6 +7,7 @@ import { RouteComponentProps, Link, NavLink } from "react-router-dom";
 import { ConclusionListItem } from "./Components/ConclusionListItem";
 import { List } from "./Components/List";
 import AdSense from "./Components/AdSense";
+import { Badge } from "./Components/Badge";
 
 export interface RouterParams {
   id: string;
@@ -38,13 +39,11 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
             发布于{topicStore.topic.created_time}
           </span>
           {topicStore.topic.subscription ? (
-            <span onClick={topicStore.unsubscribe}>取消订阅</span>
+            <Badge text="取消订阅" onClick={topicStore.unsubscribe} />
           ) : (
-            <span onClick={topicStore.subscribe}>立即订阅</span>
+            <Badge text="立即订阅" onClick={topicStore.subscribe} />
           )}
         </div>
-
-        <AdSense />
 
         <div className="topic__conclusions">
           <p className="header__title">论点</p>

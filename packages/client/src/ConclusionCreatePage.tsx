@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import "./ConclusionCreatePage.css";
 import { conclusionCreateStore } from "./Stores/ConclusionCreateStore";
 import { RouteComponentProps, RouteProps } from "react-router";
+import { Badge } from "./Components/Badge";
 
 export interface RouterParams {
   id: string;
@@ -29,10 +30,9 @@ export class ConclusionCreatePage extends Component<
               value={conclusionCreateStore.title}
             />
           </div>
-          <div>
-            <label className="form__field__label">
-              论据<span onClick={conclusionCreateStore.createProof}>+</span>
-            </label>
+          <div className="flex__box">
+            <label className="form__field__label flex__item">论据</label>
+            <Badge onClick={conclusionCreateStore.createProof} text="+" />
           </div>
           {conclusionCreateStore.proofs.map((proof, index) => {
             return (

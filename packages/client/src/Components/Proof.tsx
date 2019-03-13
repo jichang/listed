@@ -1,5 +1,7 @@
 import React from "react";
 import { IProof } from "@listed/shared";
+import ReactMarkdown from "react-markdown";
+import "./Proof.css";
 
 export interface IProofProps {
   index: number;
@@ -10,11 +12,8 @@ export class Proof extends React.Component<IProofProps> {
   render() {
     const { index, proof } = this.props;
     return (
-      <div>
-        <p>
-          <span>{index + 1}. </span>
-          {proof.content}
-        </p>
+      <div className="proof" data-index={`论点${index + 1}`}>
+        <ReactMarkdown source={proof.content} />
       </div>
     );
   }
