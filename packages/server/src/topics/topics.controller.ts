@@ -16,12 +16,14 @@ import {
 } from '@listed/shared';
 import { TopicsService } from './topics.service';
 import { AuthGuard } from '@nestjs/passport';
+import { UserGuard } from 'src/user.guard';
 
 @Controller('/api/v1')
 export class TopicsController {
   constructor(private readonly topicsService: TopicsService) {}
 
   @Get('/topics')
+  @UseGuards(UserGuard)
   async getAll(@Req() req, @Query() paginatorParams: IPaginatorParams) {
     let topics: ICollection<ITopic> = await this.topicsService.getAll(
       req.user,
@@ -40,7 +42,7 @@ export class TopicsController {
   }
 
   @Get('/topics/:id')
-  @UseGuards(AuthGuard())
+  @UseGuards(UserGuard)
   async getOne(@Param() { id }: { id: string }, @Req() req) {
     return await this.topicsService.select(req.user, id);
   }
