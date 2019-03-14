@@ -35,18 +35,19 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
         <div className="topic__info">
           <Topic topic={topicStore.topic} />
           <p className="topic__description">{topicStore.topic.description}</p>
-          <span className="timestamp">
-            发布于{topicStore.topic.created_time}
-          </span>
-          {topicStore.topic.subscription ? (
-            <Badge text="取消订阅" onClick={topicStore.unsubscribe} />
-          ) : (
-            <Badge text="立即订阅" onClick={topicStore.subscribe} />
-          )}
+          <div className="topic__action">
+            <span className="timestamp">
+              发布于{topicStore.topic.created_time}
+            </span>
+            {topicStore.topic.subscription ? (
+              <Badge text="取消订阅" onClick={topicStore.unsubscribe} />
+            ) : (
+              <Badge text="立即订阅" onClick={topicStore.subscribe} />
+            )}
+          </div>
         </div>
 
         <div className="topic__conclusions">
-          <p className="header__title">论点</p>
           <List
             items={topicStore.conclusions.items}
             component={ConclusionListItem}

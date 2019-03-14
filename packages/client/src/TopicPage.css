@@ -2,6 +2,10 @@
   margin: 2em 0;
 }
 
+.topic__info .topic__action .badge {
+  margin-left: 0.5rem;
+}
+
 .header__title {
   color: rgba(0, 0, 0, 0.5);
 }

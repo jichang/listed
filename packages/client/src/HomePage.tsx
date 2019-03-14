@@ -21,11 +21,14 @@ export class HomePage extends Component {
           items={topicCollectionStore.collection.items}
           component={TopicListItem}
         />
-        <Pagination
-          total={topicCollectionStore.collection.total}
-          pageSize={topicCollectionStore.paginator.limit}
-          onChange={topicCollectionStore.updatePaginator}
-        />
+        {topicCollectionStore.collection.total >
+        topicCollectionStore.paginator.limit ? (
+          <Pagination
+            total={topicCollectionStore.collection.total}
+            pageSize={topicCollectionStore.paginator.limit}
+            onChange={topicCollectionStore.updatePaginator}
+          />
+        ) : null}
       </div>
     );
   }

@@ -14,7 +14,7 @@ export class Topic extends React.Component<ITopicProps> {
     return (
       <div className="topic">
         <h4 className="topic__title">
-          <Badge text={topic.type} />
+          <img className="topic__type" src={`/images/${topic.type}.svg`} />
           {topic.title}
         </h4>
       </div>

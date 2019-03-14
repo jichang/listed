@@ -1,3 +1,10 @@
+.topic__type {
+  width: 2rem;
+  height: 2rem;
+
+  vertical-align: middle;
+}
+
 .topic__title {
   margin: 1rem 0 0.5rem 0;
 
