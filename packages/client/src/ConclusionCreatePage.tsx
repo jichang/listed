@@ -32,7 +32,7 @@ export class ConclusionCreatePage extends Component<
           </div>
           <div className="flex__box">
             <label className="form__field__label flex__item">论据</label>
-            <Badge onClick={conclusionCreateStore.createProof} text="+" />
+            <Badge onClick={conclusionCreateStore.createProof}>+</Badge>
           </div>
           {conclusionCreateStore.proofs.map((proof, index) => {
             return (

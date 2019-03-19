@@ -30,6 +30,21 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
       );
     }
 
+    let topicAction = null;
+    if (!topicStore.topic.isOwner) {
+      topicAction = (
+        <Badge>
+          <NavLink to={`${this.props.match.url}/edit`}>编辑</NavLink>
+        </Badge>
+      );
+    } else {
+      if (topicStore.topic.subscription) {
+        topicAction = <Badge onClick={topicStore.unsubscribe}>取消订阅</Badge>;
+      } else {
+        topicAction = <Badge onClick={topicStore.subscribe}>立即订阅</Badge>;
+      }
+    }
+
     return (
       <div className="page page--topic">
         <div className="topic__info">
@@ -39,11 +54,7 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
             <span className="timestamp">
               发布于{topicStore.topic.createdTime}
             </span>
-            {topicStore.topic.subscription ? (
-              <Badge text="取消订阅" onClick={topicStore.unsubscribe} />
-            ) : (
-              <Badge text="立即订阅" onClick={topicStore.subscribe} />
-            )}
+            {topicAction}
           </div>
         </div>
 

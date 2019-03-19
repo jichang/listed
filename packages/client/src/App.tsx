@@ -14,6 +14,7 @@ import { TopicPage } from "./TopicPage";
 import { OAuthPage } from "./OAuthPage";
 import { sessionStore } from "./Stores/SessionStore";
 import { TopicCreatePage } from "./TopicCreatePage";
+import { TopicEditPage } from "./TopicEditPage";
 import { ConclusionCreatePage } from "./ConclusionCreatePage";
 
 export interface Props extends RouteComponentProps<any> {}
@@ -46,6 +47,11 @@ export class App extends Component<Props> {
             <Route exact path="/topics/:id" component={TopicPageHeader} />
             <Route
               exact
+              path="/topics/:id/edit"
+              component={ConclusionCreatePageHeader}
+            />
+            <Route
+              exact
               path="/topics/:id/conclusions/create"
               component={ConclusionCreatePageHeader}
             />
@@ -58,6 +64,7 @@ export class App extends Component<Props> {
             <Route exact path="/oauth" component={OAuthPage} />
             <Route exact path="/topics/create" component={TopicCreatePage} />
             <Route exact path="/topics/:id" component={TopicPage} />
+            <Route exact path="/topics/:id/edit" component={TopicEditPage} />
             <Route
               exact
               path="/topics/:id/conclusions/create"
