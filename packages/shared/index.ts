@@ -19,8 +19,8 @@ export type LoadingState = "idle" | "loading" | "succeed" | "failed";
 
 export interface IUser {
   id: string;
-  open_id: string;
-  created_time: string;
+  openId: string;
+  createdTime: string;
   status: number;
 }
 
@@ -42,8 +42,9 @@ export interface ITopic {
   description: string;
   type: TopicType;
   subscription: Option<ISubscription>;
-  created_time: string;
-  updated_time: string;
+  isOwner: boolean;
+  createdTime: string;
+  updatedTime: string;
   status: number;
 }
 
@@ -56,24 +57,26 @@ export interface IConclusionCreateParams {
 
 export interface IConclusion {
   id: string;
+  isOwner: boolean;
   title: string;
-  created_time: string;
-  updated_time: string;
+  createdTime: string;
+  updatedTime: string;
   proofs: ICollection<IProof>;
   status: number;
 }
 
 export interface IProof {
   id: string;
+  isOwner: boolean;
   content: string;
-  created_time: string;
-  updated_time: string;
+  createdTime: string;
+  updatedTime: string;
   status: number;
 }
 
 export interface ISubscription {
   id: string;
-  created_time: string;
-  updated_time: string;
+  createdTime: string;
+  updatedTime: string;
   status: number;
 }

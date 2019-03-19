@@ -19,8 +19,8 @@ export class SubscriptionsService {
       let row = rows[0];
       let subscription: ISubscription = {
         id: row.id,
-        created_time: row.created_time,
-        updated_time: row.updated_time,
+        createdTime: row.created_time,
+        updatedTime: row.updated_time,
         status: row.status,
       };
 
@@ -53,8 +53,8 @@ export class SubscriptionsService {
       let row = rows[0];
       let subscription: ISubscription = {
         id: row.id,
-        created_time: row.created_time,
-        updated_time: row.updated_time,
+        createdTime: row.created_time,
+        updatedTime: row.updated_time,
         status: row.status,
       };
 

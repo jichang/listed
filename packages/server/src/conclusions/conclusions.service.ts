@@ -11,13 +11,18 @@ import { DatabaseService } from 'src/database/database.service';
 export class ConclusionsService {
   constructor(private readonly databaseService: DatabaseService) {}
 
-  async getAll(topicId: string, paginatorParams: IPaginatorParams) {
+  async getAll(
+    user: IUser,
+    topicId: string,
+    paginatorParams: IPaginatorParams,
+  ) {
     let client = await this.databaseService.pool.connect();
     try {
       let sql = `
       SELECT
         count(*) OVER() AS total,
         id,
+        user_id,
         title,
         created_time,
         updated_time,
@@ -33,8 +38,6 @@ export class ConclusionsService {
         paginatorParams.limit,
       ]);
 
-      client.release();
-
       let conclusions: IConclusion[] = [];
       for (let row of rows) {
         let sql = `
@@ -44,29 +47,35 @@ export class ConclusionsService {
         `;
         let { rows } = await client.query(sql, [row.id]);
 
+        let isOwner = !!user && user.id === user.id;
+
         let conclusion: IConclusion = {
           id: row.id,
           title: row.title,
+          isOwner,
           proofs: {
             total: rows.length,
             items: rows.map(row => {
               return {
                 id: row.id,
+                isOwner,
                 content: row.content,
-                created_time: row.created_time,
-                updated_time: row.updated_time,
+                createdTime: row.created_time,
+                updatedTime: row.updated_time,
                 status: row.status,
               };
             }),
           },
-          created_time: row.created_time,
-          updated_time: row.updated_time,
+          createdTime: row.created_time,
+          updatedTime: row.updated_time,
           status: row.status,
         };
 
         conclusions.push(conclusion);
       }
       let total = rows.length > 0 ? rows[0].total : 0;
+
+      client.release();
 
       return {
         total,
@@ -92,9 +101,10 @@ export class ConclusionsService {
       let row = rows[0];
       let conclusion: IConclusion = {
         id: row.id,
+        isOwner: true,
         title: row.title,
-        created_time: row.created_time,
-        updated_time: row.updated_time,
+        createdTime: row.created_time,
+        updatedTime: row.updated_time,
         proofs: {
           total: params.proofs.length,
           items: [],
@@ -116,9 +126,10 @@ export class ConclusionsService {
         let row = rows[0];
         conclusion.proofs.items.push({
           id: row.id,
+          isOwner: true,
           content: row.content,
-          created_time: row.created_time,
-          updated_time: row.updated_time,
+          createdTime: row.created_time,
+          updatedTime: row.updated_time,
           status: row.status,
         });
       }

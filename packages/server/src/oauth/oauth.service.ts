@@ -46,8 +46,8 @@ export class OauthService {
 
       let user = {
         id: row.id,
-        open_id: row.open_id,
-        created_time: row.created_time,
+        openId: row.open_id,
+        createdTime: row.created_time,
         status: row.status,
       };
 

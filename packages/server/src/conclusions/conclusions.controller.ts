@@ -23,12 +23,13 @@ export class ConclusionsController {
 
   @Get('/topics/:id/conclusions')
   async getAll(
+    @Req() req,
     @Param() { id }: { id: string },
     @Query() paginatorParams: IPaginatorParams,
   ) {
     let conclusions: ICollection<
       IConclusion
-    > = await this.conclusionsService.getAll(id, paginatorParams);
+    > = await this.conclusionsService.getAll(req.user, id, paginatorParams);
 
     return conclusions;
   }

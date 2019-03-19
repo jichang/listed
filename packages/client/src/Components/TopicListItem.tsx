@@ -18,7 +18,7 @@ export class TopicListItem extends React.Component<ITopicListItemProps> {
         <Link to={link}>
           <Topic topic={item} />
         </Link>
-        <span className="timestamp">发布于{item.created_time}</span>
+        <span className="timestamp">发布于{item.createdTime}</span>
       </div>
     );
   }

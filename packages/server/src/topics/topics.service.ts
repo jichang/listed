@@ -19,6 +19,7 @@ export class TopicsService {
       SELECT
         count(*) OVER() AS total,
         id,
+        user_id,
         title,
         description,
         type,
@@ -39,12 +40,13 @@ export class TopicsService {
       let topics: ITopic[] = rows.map(row => {
         return {
           id: row.id,
+          isOwner: !!user && row.user_id === user.id,
           title: row.title,
           description: row.description,
           type: (row.type === 0 ? 'private' : 'public') as TopicType,
           subscription: null,
-          created_time: row.created_time,
-          updated_time: row.updated_time,
+          createdTime: row.created_time,
+          updatedTime: row.updated_time,
           status: row.status,
         };
       });
@@ -96,17 +98,18 @@ export class TopicsService {
       let subscriptionRow = subscriptionRows[0];
       let topic: ITopic = {
         id: topicRow.id,
+        isOwner: true,
         title: topicRow.title,
         description: topicRow.description,
         type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
         subscription: {
           id: subscriptionRow.id,
-          created_time: subscriptionRow.created_time,
-          updated_time: subscriptionRow.updated_time,
+          createdTime: subscriptionRow.created_time,
+          updatedTime: subscriptionRow.updated_time,
           status: subscriptionRow.status,
         },
-        created_time: topicRow.created_time,
-        updated_time: topicRow.updated_time,
+        createdTime: topicRow.created_time,
+        updatedTime: topicRow.updated_time,
         status: topicRow.status,
       };
 
@@ -126,6 +129,7 @@ export class TopicsService {
       let sql = `
       SELECT
         id,
+        user_id,
         title,
         description,
         type,
@@ -158,8 +162,8 @@ export class TopicsService {
         if (subscriptionRow) {
           subscription = {
             id: subscriptionRow.id,
-            created_time: subscriptionRow.created_time,
-            updated_time: subscriptionRow.updated_time,
+            createdTime: subscriptionRow.created_time,
+            updatedTime: subscriptionRow.updated_time,
             status: subscriptionRow.status,
           };
         }
@@ -169,12 +173,13 @@ export class TopicsService {
 
       let topic: ITopic = {
         id: topicRow.id,
+        isOwner: !!user && topicRow.user_id === user.id,
         title: topicRow.title,
         description: topicRow.description,
         type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
         subscription,
-        created_time: topicRow.created_time,
-        updated_time: topicRow.updated_time,
+        createdTime: topicRow.created_time,
+        updatedTime: topicRow.updated_time,
         status: topicRow.status,
       };
 

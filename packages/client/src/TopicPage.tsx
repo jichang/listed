@@ -37,7 +37,7 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
           <p className="topic__description">{topicStore.topic.description}</p>
           <div className="topic__action">
             <span className="timestamp">
-              发布于{topicStore.topic.created_time}
+              发布于{topicStore.topic.createdTime}
             </span>
             {topicStore.topic.subscription ? (
               <Badge text="取消订阅" onClick={topicStore.unsubscribe} />
