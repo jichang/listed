@@ -14,3 +14,13 @@
   margin: 1rem 0;
   font-size: 1rem;
 }
+
+.app__header__title {
+  display: inline-block;
+  margin-left: 1rem;
+
+  vertical-align: middle;
+
+  font-weight: bold;
+  font-style: oblique;
+}

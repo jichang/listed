@@ -3,6 +3,7 @@ import { sessionStore } from "../Stores/SessionStore";
 import { observer } from "mobx-react";
 import "./AppHeader.css";
 import { NavLink, RouteComponentProps } from "react-router-dom";
+import { SiteLogo } from "./SiteLogo";
 
 @observer
 export class AppHeader extends React.Component {
@@ -10,7 +11,10 @@ export class AppHeader extends React.Component {
     return (
       <div className="app__header">
         <div className="app__header__content flex__box">
-          <h4 className="flex__item">Listed!</h4>
+          <h4 className="flex__item">
+            <SiteLogo />
+            <span className="app__header__title">Listed</span>
+          </h4>
           <div>
             {sessionStore.session.user ? (
               <NavLink className="button button--primary" to="/topics/create">
@@ -36,7 +40,7 @@ export class TopicCreatePageHeader extends React.Component {
         <div className="app__header__content flex__box">
           <div className="flex__item">
             <p>
-              <NavLink to="/">&lt;返回首页</NavLink>
+              <NavLink to="/">返回首页</NavLink>
             </p>
           </div>
         </div>
@@ -60,7 +64,7 @@ export class ConclusionCreatePageHeader extends React.Component<
           <div className="flex__item">
             <p>
               <NavLink to={`/topics/${this.props.match.params.id}`}>
-                &lt;返回
+                返回主题
               </NavLink>
             </p>
           </div>
@@ -80,7 +84,7 @@ export class TopicPageHeader extends React.Component<
         <div className="app__header__content flex__box">
           <div className="flex__item">
             <p>
-              <NavLink to="/">&lt;返回首页</NavLink>
+              <NavLink to="/">返回首页</NavLink>
             </p>
           </div>
           <NavLink
