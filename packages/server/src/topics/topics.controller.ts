@@ -10,7 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import {
-  IPaginatorParams,
+  ITopicQueryParams,
   ICollection,
   ITopic,
   ITopicCreateParams,
@@ -25,10 +25,10 @@ export class TopicsController {
 
   @Get('/topics')
   @UseGuards(UserGuard)
-  async getAll(@Req() req, @Query() paginatorParams: IPaginatorParams) {
+  async getAll(@Req() req, @Query() params: ITopicQueryParams) {
     let topics: ICollection<ITopic> = await this.topicsService.getAll(
       req.user,
-      paginatorParams,
+      params,
     );
 
     return topics;

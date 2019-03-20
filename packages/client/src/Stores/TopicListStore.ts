@@ -1,8 +1,14 @@
 import { observable, action } from "mobx";
-import { ICollection, ITopic, IPaginatorParams } from "@listed/shared";
+import {
+  ICollection,
+  ITopic,
+  IPaginatorParams,
+  ITopicQueryParams
+} from "@listed/shared";
 import { PageChangeEvent } from "../Components/Pagination";
 
 export class TopicCollectionStore {
+  @observable keyword: string = "";
   @observable paginator: IPaginatorParams = {
     offset: 0,
     limit: 20
@@ -13,12 +19,12 @@ export class TopicCollectionStore {
   };
 
   @action
-  async query(paginatorParams: IPaginatorParams) {
+  async query(params: ITopicQueryParams) {
     try {
       let token = window.localStorage.getItem("auth.token");
       let response = await fetch(
-        `/api/v1/topics?limit=${paginatorParams.limit}&offset=${
-          paginatorParams.offset
+        `/api/v1/topics?limit=${params.limit}&offset=${params.offset}&keyword=${
+          params.keyword
         }`,
         {
           method: "GET",
@@ -44,7 +50,16 @@ export class TopicCollectionStore {
   updatePaginator(evt: PageChangeEvent) {
     this.paginator.offset = this.paginator.limit * evt.page;
 
-    this.query(this.paginator);
+    this.query({
+      keyword: this.keyword,
+      limit: this.paginator.limit,
+      offset: this.paginator.offset
+    });
+  }
+
+  @action.bound
+  updateKeyword(keyword: string) {
+    this.keyword = keyword;
   }
 }
 

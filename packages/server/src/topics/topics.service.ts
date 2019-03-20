@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
 import {
-  IPaginatorParams,
   ITopicCreateParams,
   ITopic,
   IUser,
   TopicType,
+  ITopicQueryParams,
 } from '@listed/shared';
 
 @Injectable()
 export class TopicsService {
   constructor(private readonly databaseService: DatabaseService) {}
 
-  async getAll(user: IUser, paginatorParams: IPaginatorParams) {
+  async getAll(user: IUser, params: ITopicQueryParams) {
     let client = await this.databaseService.pool.connect();
     try {
       let sql = `
@@ -27,13 +27,15 @@ export class TopicsService {
         updated_time,
         status
       FROM listed.topics
+      WHERE title LIKE $3
       ORDER BY id DESC
       OFFSET $1
       LIMIT $2
       `;
       let { rows } = await client.query(sql, [
-        paginatorParams.offset,
-        paginatorParams.limit,
+        params.offset,
+        params.limit,
+        `%${params.keyword}%`,
       ]);
 
       client.release();

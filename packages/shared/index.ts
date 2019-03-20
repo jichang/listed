@@ -36,6 +36,10 @@ export interface ITopicCreateParams {
   type: TopicType;
 }
 
+export interface ITopicQueryParams extends IPaginatorParams {
+  keyword: string
+}
+
 export interface ITopic {
   id: string;
   title: string;

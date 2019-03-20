@@ -8,9 +8,7 @@ export class ConclusionCreateStore {
   @observable proofs: { content: string }[] = [];
 
   @action.bound
-  async create(evt: FormEvent) {
-    evt.preventDefault();
-
+  async create() {
     let params = {
       title: this.title,
       proofs: this.proofs

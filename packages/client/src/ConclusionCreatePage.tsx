@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, FormEvent } from "react";
 import { observer } from "mobx-react";
 import "./ConclusionCreatePage.css";
 import { conclusionCreateStore } from "./Stores/ConclusionCreateStore";
@@ -18,10 +18,17 @@ export class ConclusionCreatePage extends Component<
     conclusionCreateStore.topicId = params.id;
   }
 
+  async create(evt: FormEvent) {
+    evt.preventDefault();
+
+    let topic = await conclusionCreateStore.create();
+    this.props.history.push(`/topics/${conclusionCreateStore.topicId}`);
+  }
+
   render() {
     return (
       <div className="page page--conclusion-create">
-        <form className="form" onSubmit={conclusionCreateStore.create}>
+        <form className="form" onSubmit={evt => this.create(evt)}>
           <div className="form__field">
             <label className="form__field__label">结论</label>
             <input
