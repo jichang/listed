@@ -27,6 +27,7 @@ export class TopicsService {
         updated_time,
         status
       FROM listed.topics
+      ORDER BY id DESC
       OFFSET $1
       LIMIT $2
       `;
@@ -178,6 +179,48 @@ export class TopicsService {
         description: topicRow.description,
         type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
         subscription,
+        createdTime: topicRow.created_time,
+        updatedTime: topicRow.updated_time,
+        status: topicRow.status,
+      };
+
+      return {
+        topic,
+      };
+    } catch (e) {
+      client.release();
+      throw e;
+    }
+  }
+
+  async update(user: IUser, topicId: string, params: ITopicCreateParams) {
+    let client = await this.databaseService.pool.connect();
+    try {
+      let sql = `
+      UPDATE listed.topics
+      SET title = $3, description = $4, type = $5, updated_time = now()
+      WHERE user_id = $1 AND id = $2
+      RETURNING *
+      `;
+
+      let { rows } = await client.query(sql, [
+        user.id,
+        topicId,
+        params.title,
+        params.description,
+        params.type === 'public' ? 0 : 1,
+      ]);
+
+      client.release();
+
+      let topicRow = rows[0];
+
+      let topic = {
+        id: topicRow.id,
+        isOwner: true,
+        title: topicRow.title,
+        description: topicRow.description,
+        type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
         createdTime: topicRow.created_time,
         updatedTime: topicRow.updated_time,
         status: topicRow.status,

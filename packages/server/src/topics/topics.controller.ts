@@ -7,6 +7,7 @@ import {
   UseGuards,
   Req,
   Param,
+  Put,
 } from '@nestjs/common';
 import {
   IPaginatorParams,
@@ -45,5 +46,17 @@ export class TopicsController {
   @UseGuards(UserGuard)
   async getOne(@Param() { id }: { id: string }, @Req() req) {
     return await this.topicsService.select(req.user, id);
+  }
+
+  @Put('/topics/:id')
+  @UseGuards(AuthGuard())
+  async update(
+    @Req() req,
+    @Param() { id }: { id: string },
+    @Body() params: ITopicCreateParams,
+  ) {
+    let { topic } = await this.topicsService.update(req.user, id, params);
+
+    return topic;
   }
 }

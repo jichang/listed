@@ -31,7 +31,7 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
     }
 
     let topicAction = null;
-    if (!topicStore.topic.isOwner) {
+    if (topicStore.topic.isOwner) {
       topicAction = (
         <Badge>
           <NavLink to={`${this.props.match.url}/edit`}>编辑</NavLink>

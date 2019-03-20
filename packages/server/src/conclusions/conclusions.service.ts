@@ -29,6 +29,7 @@ export class ConclusionsService {
         status
       FROM listed.conclusions
       WHERE topic_id = $1
+      ORDER BY id ASC
       OFFSET $2
       LIMIT $3
       `;
@@ -44,6 +45,7 @@ export class ConclusionsService {
         SELECT *
         FROM listed.proofs
         WHERE conclusion_id = $1
+        ORDER BY id ASC
         `;
         let { rows } = await client.query(sql, [row.id]);
 
