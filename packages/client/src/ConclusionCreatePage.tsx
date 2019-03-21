@@ -4,6 +4,7 @@ import "./ConclusionCreatePage.css";
 import { conclusionCreateStore } from "./Stores/ConclusionCreateStore";
 import { RouteComponentProps, RouteProps } from "react-router";
 import { Badge } from "./Components/Badge";
+import { FormattedMessage } from "react-intl";
 
 export interface RouterParams {
   id: string;
@@ -30,7 +31,13 @@ export class ConclusionCreatePage extends Component<
       <div className="page page--conclusion-create">
         <form className="form" onSubmit={evt => this.create(evt)}>
           <div className="form__field">
-            <label className="form__field__label">结论</label>
+            <label className="form__field__label">
+              <FormattedMessage
+                id="conclusion"
+                defaultMessage="结论"
+                description="conclusion"
+              />
+            </label>
             <input
               className="form__control"
               onChange={conclusionCreateStore.updateTitle}
@@ -38,7 +45,13 @@ export class ConclusionCreatePage extends Component<
             />
           </div>
           <div className="flex__box">
-            <label className="form__field__label flex__item">论据</label>
+            <label className="form__field__label flex__item">
+              <FormattedMessage
+                id="proof"
+                defaultMessage="论据"
+                description="proof"
+              />
+            </label>
             <Badge onClick={conclusionCreateStore.createProof}>+</Badge>
           </div>
           {conclusionCreateStore.proofs.map((proof, index) => {
@@ -56,7 +69,11 @@ export class ConclusionCreatePage extends Component<
           })}
           <div className="form__field form__field--action">
             <button className="button button--primary button--block">
-              创建新结论
+              <FormattedMessage
+                id="publish_conclustion"
+                defaultMessage="发布新论点"
+                description="title of publish conclusion button"
+              />
             </button>
           </div>
         </form>

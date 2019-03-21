@@ -1,5 +1,6 @@
 import React from "react";
 import "./Pagination.css";
+import { FormattedMessage } from "react-intl";
 
 export interface PageChangeEvent {
   page: number;
@@ -59,7 +60,11 @@ export class Pagination extends React.Component<Props, State> {
           onClick={() => this.gotoPrev()}
           disabled={this.state.page <= 0}
         >
-          Prev
+          <FormattedMessage
+            id="prev_page"
+            defaultMessage="上一页"
+            description="title of previous page button"
+          />
         </button>
         <div className="flex__item" />
         <button
@@ -70,7 +75,11 @@ export class Pagination extends React.Component<Props, State> {
             (this.state.page + 1) * this.props.pageSize >= this.props.total
           }
         >
-          Next
+          <FormattedMessage
+            id="next_page"
+            defaultMessage="下一页"
+            description="title of next page button"
+          />
         </button>
       </div>
     );

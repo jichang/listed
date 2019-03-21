@@ -4,6 +4,7 @@ import "./TopicCreatePage.css";
 import { topicCreateStore } from "./Stores/TopicCreateStore";
 import { TopicType } from "@listed/shared";
 import { RouteComponentProps } from "react-router";
+import { FormattedMessage } from "react-intl";
 
 @observer
 export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
@@ -31,7 +32,13 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
       <div className="page page--topic-create">
         <form className="form" onSubmit={evt => this.create(evt)}>
           <div className="form__field">
-            <label className="form__field__label">主题</label>
+            <label className="form__field__label">
+              <FormattedMessage
+                id="topic"
+                defaultMessage="主题"
+                description="title of topic"
+              />
+            </label>
             <input
               className="form__control"
               onChange={this.updateTitle}
@@ -39,7 +46,13 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
             />
           </div>
           <div className="form__field">
-            <label className="form__field__label">描述</label>
+            <label className="form__field__label">
+              <FormattedMessage
+                id="description"
+                defaultMessage="描述"
+                description="decsription of topic"
+              />
+            </label>
             <textarea
               className="form__control"
               onChange={this.updateDescription}
@@ -47,7 +60,13 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
             />
           </div>
           <div className="form__field">
-            <label className="form__field__label">类型</label>
+            <label className="form__field__label">
+              <FormattedMessage
+                id="type"
+                defaultMessage="类型"
+                description="type of topic"
+              />
+            </label>
             <div className="form__control">
               <label className="form__control--radio">
                 <input
@@ -57,7 +76,13 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
                   checked={topicCreateStore.type === "public"}
                   onChange={this.updateType}
                 />
-                <span>公开</span>
+                <span>
+                  <FormattedMessage
+                    id="public"
+                    defaultMessage="公开"
+                    description="public topic"
+                  />
+                </span>
               </label>
               <label className="form__control--radio">
                 <input
@@ -67,13 +92,23 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
                   checked={topicCreateStore.type === "private"}
                   onChange={this.updateType}
                 />
-                <span>个人</span>
+                <span>
+                  <FormattedMessage
+                    id="private"
+                    defaultMessage="个人"
+                    description="private topic"
+                  />
+                </span>
               </label>
             </div>
           </div>
           <div className="form__field form__field--action">
             <button className="button button--primary button--block">
-              创建新主题
+              <FormattedMessage
+                id="publish_topic"
+                defaultMessage="发布新主题"
+                description="title of publish topic button"
+              />
             </button>
           </div>
         </form>

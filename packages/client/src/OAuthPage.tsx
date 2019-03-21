@@ -23,14 +23,6 @@ export class OAuthPage extends Component<Props> {
   }
 
   render() {
-    return (
-      <div className="page page--oauth">
-        <List
-          keyProp="id"
-          items={topicCollectionStore.collection.items}
-          component={TopicListItem}
-        />
-      </div>
-    );
+    return <div className="page page--oauth" />;
   }
 }

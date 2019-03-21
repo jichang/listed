@@ -8,6 +8,8 @@ import { ConclusionListItem } from "./Components/ConclusionListItem";
 import { List } from "./Components/List";
 import AdSense from "./Components/AdSense";
 import { Badge } from "./Components/Badge";
+import { PublishDate } from "./Components/PublishDate";
+import { FormattedMessage } from "react-intl";
 
 export interface RouterParams {
   id: string;
@@ -34,14 +36,36 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
     if (topicStore.topic.isOwner) {
       topicAction = (
         <Badge>
-          <NavLink to={`${this.props.match.url}/edit`}>编辑</NavLink>
+          <NavLink to={`${this.props.match.url}/edit`}>
+            <FormattedMessage
+              id="edit"
+              defaultMessage="编辑"
+              description="title of edit button"
+            />
+          </NavLink>
         </Badge>
       );
     } else {
       if (topicStore.topic.subscription) {
-        topicAction = <Badge onClick={topicStore.unsubscribe}>取消订阅</Badge>;
+        topicAction = (
+          <Badge onClick={topicStore.unsubscribe}>
+            <FormattedMessage
+              id="unsubscribe"
+              defaultMessage="取消订阅"
+              description="title of unsubscribe button"
+            />
+          </Badge>
+        );
       } else {
-        topicAction = <Badge onClick={topicStore.subscribe}>立即订阅</Badge>;
+        topicAction = (
+          <Badge onClick={topicStore.subscribe}>
+            <FormattedMessage
+              id="subscribe"
+              defaultMessage="立即订阅"
+              description="title of subscribe button"
+            />
+          </Badge>
+        );
       }
     }
 
@@ -51,9 +75,7 @@ export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
           <Topic topic={topicStore.topic} />
           <p className="topic__description">{topicStore.topic.description}</p>
           <div className="topic__action">
-            <span className="timestamp">
-              发布于{topicStore.topic.createdTime}
-            </span>
+            <PublishDate date={topicStore.topic.createdTime} />
             {topicAction}
           </div>
         </div>

@@ -1,0 +1,11 @@
+{
+  "presets": ["@babel/typescript", ["react-app", { "useFlowPreset": false }]],
+  "plugins": [
+    [
+      "react-intl",
+      {
+        "messagesDir": "./messages"
+      }
+    ]
+  ]
+}

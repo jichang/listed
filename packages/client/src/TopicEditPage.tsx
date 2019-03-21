@@ -4,6 +4,7 @@ import "./TopicCreatePage.css";
 import { topicEditStore } from "./Stores/TopicEditStore";
 import { TopicType } from "@listed/shared";
 import { RouteComponentProps } from "react-router";
+import { FormattedMessage } from "react-intl";
 
 export interface RouterParams {
   id: string;
@@ -42,7 +43,13 @@ export class TopicEditPage extends Component<
       <div className="page page--topic-create">
         <form className="form" onSubmit={evt => this.update(evt)}>
           <div className="form__field">
-            <label className="form__field__label">主题</label>
+            <label className="form__field__label">
+              <FormattedMessage
+                id="topic"
+                defaultMessage="主题"
+                description="title of topic"
+              />
+            </label>
             <input
               className="form__control"
               onChange={this.updateTitle}
@@ -50,7 +57,13 @@ export class TopicEditPage extends Component<
             />
           </div>
           <div className="form__field">
-            <label className="form__field__label">描述</label>
+            <label className="form__field__label">
+              <FormattedMessage
+                id="description"
+                defaultMessage="描述"
+                description="decsription of topic"
+              />
+            </label>
             <textarea
               className="form__control"
               onChange={this.updateDescription}
@@ -58,7 +71,13 @@ export class TopicEditPage extends Component<
             />
           </div>
           <div className="form__field">
-            <label className="form__field__label">类型</label>
+            <label className="form__field__label">
+              <FormattedMessage
+                id="type"
+                defaultMessage="类型"
+                description="type of topic"
+              />
+            </label>
             <div className="form__control">
               <label className="form__control--radio">
                 <input
@@ -68,7 +87,13 @@ export class TopicEditPage extends Component<
                   checked={topicEditStore.type === "public"}
                   onChange={this.updateType}
                 />
-                <span>公开</span>
+                <span>
+                  <FormattedMessage
+                    id="public"
+                    defaultMessage="公开"
+                    description="public topic"
+                  />
+                </span>
               </label>
               <label className="form__control--radio">
                 <input
@@ -78,13 +103,23 @@ export class TopicEditPage extends Component<
                   checked={topicEditStore.type === "private"}
                   onChange={this.updateType}
                 />
-                <span>个人</span>
+                <span>
+                  <FormattedMessage
+                    id="private"
+                    defaultMessage="个人"
+                    description="private topic"
+                  />
+                </span>
               </label>
             </div>
           </div>
           <div className="form__field form__field--action">
             <button className="button button--primary button--block">
-              创建新主题
+              <FormattedMessage
+                id="edit_topic"
+                defaultMessage="修改新主题"
+                description="title of edit topic button"
+              />
             </button>
           </div>
         </form>
