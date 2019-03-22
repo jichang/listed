@@ -6,13 +6,13 @@ import { RouteComponentProps } from "react-router";
 import { Badge } from "./Components/Badge";
 import { FormattedMessage } from "react-intl";
 
-export interface RouterParams {
+export interface IRouterParams {
   id: string;
 }
 
 @observer
 export class ConclusionCreatePage extends Component<
-  RouteComponentProps<RouterParams>
+  RouteComponentProps<IRouterParams>
 > {
   componentDidMount() {
     const { params } = this.props.match;

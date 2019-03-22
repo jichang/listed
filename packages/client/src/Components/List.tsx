@@ -5,13 +5,13 @@ export interface ItemProps<T> {
   item: T;
 }
 
-export interface Props<T> {
+export interface IProps<T> {
   keyProp: keyof T;
   items: T[];
   component: React.ComponentType<ItemProps<T>>;
 }
 
-export class List<T> extends React.Component<Props<T>> {
+export class List<T> extends React.Component<IProps<T>> {
   render() {
     const { keyProp, items, component } = this.props;
 

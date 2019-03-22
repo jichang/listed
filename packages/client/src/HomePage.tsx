@@ -5,9 +5,34 @@ import { List } from "./Components/List";
 import { TopicListItem } from "./Components/TopicListItem";
 import { topicCollectionStore } from "./Stores/TopicListStore";
 import { Pagination } from "./Components/Pagination";
+import { TabBar } from "./Components/TabBar";
+import { ITabItem } from "./Components/TabItem";
 
 @observer
 export class HomePage extends Component {
+  tabItems: ITabItem[] = [
+    {
+      key: "default",
+      title: "All",
+      icons: {
+        active: "",
+        inactive: "",
+        disabled: ""
+      },
+      state: "active"
+    },
+    {
+      key: "default",
+      title: "Subscribed",
+      icons: {
+        active: "",
+        inactive: "",
+        disabled: ""
+      },
+      state: "inactive"
+    }
+  ];
+
   componentDidMount() {
     topicCollectionStore.query({
       keyword: topicCollectionStore.keyword,
@@ -43,6 +68,7 @@ export class HomePage extends Component {
             />
           </div>
         </form>
+        <TabBar items={this.tabItems} onClick={item => console.log(item)} />
         <List
           keyProp="id"
           items={topicCollectionStore.collection.items}

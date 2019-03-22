@@ -70,13 +70,13 @@ export class TopicCreatePageHeader extends React.Component {
   }
 }
 
-export interface TopicParams {
+export interface ITopicParams {
   id: string;
 }
 
 @observer
 export class ConclusionCreatePageHeader extends React.Component<
-  RouteComponentProps<TopicParams>
+  RouteComponentProps<ITopicParams>
 > {
   render() {
     return (
@@ -101,7 +101,7 @@ export class ConclusionCreatePageHeader extends React.Component<
 
 @observer
 export class TopicPageHeader extends React.Component<
-  RouteComponentProps<TopicParams>
+  RouteComponentProps<ITopicParams>
 > {
   render() {
     return (

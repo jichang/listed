@@ -10,12 +10,12 @@ import { Badge } from "./Components/Badge";
 import { PublishDate } from "./Components/PublishDate";
 import { FormattedMessage } from "react-intl";
 
-export interface RouterParams {
+export interface IRouterParams {
   id: string;
 }
 
 @observer
-export class TopicPage extends Component<RouteComponentProps<RouterParams>> {
+export class TopicPage extends Component<RouteComponentProps<IRouterParams>> {
   componentDidMount() {
     const { params } = this.props.match;
     topicStore.select(params.id);

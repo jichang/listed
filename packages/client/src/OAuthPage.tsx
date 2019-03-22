@@ -4,10 +4,10 @@ import "./OAuthPage.css";
 import * as qs from "querystring";
 import { oauthStore } from "./Stores/OAuthStore";
 
-interface Props {}
+interface IProps {}
 
 @observer
-export class OAuthPage extends Component<Props> {
+export class OAuthPage extends Component<IProps> {
   async componentDidMount() {
     const search = location.search;
     const params = qs.parse(search.slice(1));

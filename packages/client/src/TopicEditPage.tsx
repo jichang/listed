@@ -6,13 +6,13 @@ import { TopicType } from "@listed/shared";
 import { RouteComponentProps } from "react-router";
 import { FormattedMessage } from "react-intl";
 
-export interface RouterParams {
+export interface IRouterParams {
   id: string;
 }
 
 @observer
 export class TopicEditPage extends Component<
-  RouteComponentProps<RouterParams>
+  RouteComponentProps<IRouterParams>
 > {
   componentDidMount() {
     const { params } = this.props.match;

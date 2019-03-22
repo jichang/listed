@@ -17,10 +17,10 @@ import { TopicCreatePage } from "./TopicCreatePage";
 import { TopicEditPage } from "./TopicEditPage";
 import { ConclusionCreatePage } from "./ConclusionCreatePage";
 
-export interface Props extends RouteComponentProps<any> {}
+export interface IProps extends RouteComponentProps<any> {}
 
 @observer
-export class App extends Component<Props> {
+export class App extends Component<IProps> {
   componentDidMount() {
     sessionStore.sync();
   }

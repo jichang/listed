@@ -9,24 +9,24 @@ import { IntlProvider } from "react-intl";
 import messagesEn from "./translations/en.json";
 import messagesZh from "./translations/zh.json";
 
-interface Message {
+interface IMessage {
   [index: string]: string;
 }
 
 const messages = {
   zh: messagesZh.reduce(
-    (obj: Message, message) => {
+    (obj: IMessage, message) => {
       obj[message.id] = message.defaultMessage;
       return obj;
     },
-    {} as Message
+    {} as IMessage
   ),
   en: messagesEn.reduce(
-    (obj: Message, message) => {
+    (obj: IMessage, message) => {
       obj[message.id] = message.defaultMessage;
       return obj;
     },
-    {} as Message
+    {} as IMessage
   )
 };
 

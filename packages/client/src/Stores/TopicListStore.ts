@@ -5,7 +5,7 @@ import {
   IPaginatorParams,
   ITopicQueryParams
 } from "@listed/shared";
-import { PageChangeEvent } from "../Components/Pagination";
+import { IPageChangeEvent } from "../Components/Pagination";
 
 export class TopicCollectionStore {
   @observable keyword: string = "";
@@ -47,7 +47,7 @@ export class TopicCollectionStore {
   }
 
   @action.bound
-  updatePaginator(evt: PageChangeEvent) {
+  updatePaginator(evt: IPageChangeEvent) {
     this.paginator.offset = this.paginator.limit * evt.page;
 
     this.query({

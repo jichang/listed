@@ -2,21 +2,21 @@ import React from "react";
 import "./Pagination.css";
 import { FormattedMessage } from "react-intl";
 
-export interface PageChangeEvent {
+export interface IPageChangeEvent {
   page: number;
 }
 
-export interface Props {
+export interface IProps {
   total: number;
   pageSize: number;
-  onChange: (evt: PageChangeEvent) => void;
+  onChange: (evt: IPageChangeEvent) => void;
 }
 
-export interface State {
+export interface IState {
   page: number;
 }
 
-export class Pagination extends React.Component<Props, State> {
+export class Pagination extends React.Component<IProps, IState> {
   state = {
     page: 0
   };
