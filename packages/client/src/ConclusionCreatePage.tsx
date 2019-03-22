@@ -2,7 +2,7 @@ import React, { Component, FormEvent } from "react";
 import { observer } from "mobx-react";
 import "./ConclusionCreatePage.css";
 import { conclusionCreateStore } from "./Stores/ConclusionCreateStore";
-import { RouteComponentProps, RouteProps } from "react-router";
+import { RouteComponentProps } from "react-router";
 import { Badge } from "./Components/Badge";
 import { FormattedMessage } from "react-intl";
 

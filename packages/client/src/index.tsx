@@ -33,7 +33,7 @@ const messages = {
 import "./localeData";
 
 let RouterApp = withRouter(App);
-const language = "en" || (navigator.language.split(/[-_]/)[0] as "en" | "zh");
+const language = navigator.language.split(/[-_]/)[0] as "en" | "zh";
 
 ReactDOM.render(
   <IntlProvider locale={language} messages={messages[language]}>

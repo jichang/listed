@@ -6,7 +6,6 @@ import { topicStore } from "./Stores/TopicStore";
 import { RouteComponentProps, Link, NavLink } from "react-router-dom";
 import { ConclusionListItem } from "./Components/ConclusionListItem";
 import { List } from "./Components/List";
-import AdSense from "./Components/AdSense";
 import { Badge } from "./Components/Badge";
 import { PublishDate } from "./Components/PublishDate";
 import { FormattedMessage } from "react-intl";

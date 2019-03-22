@@ -1,8 +1,6 @@
 import React from "react";
 import { ITopic } from "@listed/shared";
-import { Link } from "react-router-dom";
 import "./Topic.css";
-import { Badge } from "./Badge";
 
 export interface ITopicProps {
   topic: ITopic;

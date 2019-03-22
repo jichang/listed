@@ -5,7 +5,6 @@ import { List } from "./Components/List";
 import { TopicListItem } from "./Components/TopicListItem";
 import { topicCollectionStore } from "./Stores/TopicListStore";
 import { Pagination } from "./Components/Pagination";
-import AdSense from "./Components/AdSense";
 
 @observer
 export class HomePage extends Component {

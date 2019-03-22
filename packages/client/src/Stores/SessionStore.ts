@@ -1,5 +1,4 @@
 import { ISession, IUser, Option } from "@listed/shared";
-import { unstable_batchedUpdates } from "react-dom";
 import { action, observable } from "mobx";
 
 export type VerifyState = "idle" | "sync" | "succeed" | "failed";

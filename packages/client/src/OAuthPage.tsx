@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import "./OAuthPage.css";
-import { ITopic } from "@listed/shared";
-import { List } from "./Components/List";
-import { TopicListItem } from "./Components/TopicListItem";
-import { topicCollectionStore } from "./Stores/TopicListStore";
 import * as qs from "querystring";
 import { oauthStore } from "./Stores/OAuthStore";
 

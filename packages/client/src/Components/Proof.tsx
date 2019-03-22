@@ -2,7 +2,6 @@ import React from "react";
 import { IProof } from "@listed/shared";
 import ReactMarkdown from "react-markdown";
 import "./Proof.css";
-import { FormattedMessage } from "react-intl";
 
 export interface IProofProps {
   index: number;
