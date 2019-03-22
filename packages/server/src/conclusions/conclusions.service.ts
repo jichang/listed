@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import {
   IPaginatorParams,
   IConclusionCreateParams,
   IConclusion,
   IUser,
+  TopicType,
 } from '@listed/shared';
 import { DatabaseService } from 'src/database/database.service';
 
@@ -93,6 +94,20 @@ export class ConclusionsService {
     let client = await this.databaseService.pool.connect();
     try {
       await client.query('BEGIN');
+      let topicSql = `
+      SELECT user_id, type
+      FROM listed.topics
+      WHERE id = $1`;
+      let { rows: topicRows } = await client.query(topicSql, [topicId]);
+      if (topicRows.length === 0) {
+        throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
+      }
+
+      let topicRow = topicRows[0];
+      if (topicRow.type !== 'public' && topicRow.user_id !== user.id) {
+        throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+      }
+
       let sql = `
       INSERT INTO listed.conclusions(user_id, topic_id, title)
       VALUES ($1, $2, $3)

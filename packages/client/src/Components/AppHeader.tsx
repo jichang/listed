@@ -5,6 +5,7 @@ import "./AppHeader.css";
 import { NavLink, RouteComponentProps } from "react-router-dom";
 import { SiteLogo } from "./SiteLogo";
 import { FormattedMessage } from "react-intl";
+import { topicStore } from "../Stores/TopicStore";
 
 @observer
 export class AppHeader extends React.Component {
@@ -104,6 +105,10 @@ export class TopicPageHeader extends React.Component<
   RouteComponentProps<ITopicParams>
 > {
   render() {
+    let canPublishConclusion =
+      topicStore.topic &&
+      (topicStore.topic.isOwner || topicStore.topic.type === "public");
+
     return (
       <div className="app__header">
         <div className="app__header__content flex__box">
@@ -118,16 +123,18 @@ export class TopicPageHeader extends React.Component<
               </NavLink>
             </p>
           </div>
-          <NavLink
-            className="button button--primary"
-            to={`${this.props.match.url}/conclusions/create`}
-          >
-            <FormattedMessage
-              id="publish_conclustion"
-              defaultMessage="发布新论点"
-              description="title of publish conclusion button"
-            />
-          </NavLink>
+          {canPublishConclusion ? (
+            <NavLink
+              className="button button--primary"
+              to={`${this.props.match.url}/conclusions/create`}
+            >
+              <FormattedMessage
+                id="publish_conclustion"
+                defaultMessage="发布新论点"
+                description="title of publish conclusion button"
+              />
+            </NavLink>
+          ) : null}
         </div>
       </div>
     );
