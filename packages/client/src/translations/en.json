@@ -1,93 +1,9 @@
 [
   {
-    "id": "conclusion",
-    "description": "conclusion",
-    "defaultMessage": "Conclusion",
-    "originalDefaultMessage": "结论"
-  },
-  {
-    "id": "proof",
-    "description": "proof",
-    "defaultMessage": "Proof",
-    "originalDefaultMessage": "论据"
-  },
-  {
-    "id": "publish_conclustion",
-    "description": "title of publish conclusion button",
-    "defaultMessage": "Publish New Conclusion",
-    "originalDefaultMessage": "发布新论点"
-  },
-  {
-    "id": "topic",
-    "description": "title of topic",
-    "defaultMessage": "Topic",
-    "originalDefaultMessage": "主题"
-  },
-  {
-    "id": "description",
-    "description": "decsription of topic",
-    "defaultMessage": "Description",
-    "originalDefaultMessage": "描述"
-  },
-  {
-    "id": "type",
-    "description": "type of topic",
-    "defaultMessage": "Type",
-    "originalDefaultMessage": "类型"
-  },
-  {
-    "id": "public",
-    "description": "public topic",
-    "defaultMessage": "Public",
-    "originalDefaultMessage": "公开"
-  },
-  {
-    "id": "private",
-    "description": "private topic",
-    "defaultMessage": "Private",
-    "originalDefaultMessage": "个人"
-  },
-  {
-    "id": "edit_topic",
-    "description": "title of edit topic button",
-    "defaultMessage": "Edit Topic",
-    "originalDefaultMessage": "修改新主题"
-  },
-  {
-    "id": "publish_topic",
-    "description": "title of publish topic button",
-    "defaultMessage": "Publish New Topic",
-    "originalDefaultMessage": "发布新主题"
-  },
-  {
-    "id": "edit",
-    "description": "title of edit button",
-    "defaultMessage": "Edit",
-    "originalDefaultMessage": "编辑"
-  },
-  {
-    "id": "unsubscribe",
-    "description": "title of unsubscribe button",
-    "defaultMessage": "Unsubscribe",
-    "originalDefaultMessage": "取消订阅"
-  },
-  {
-    "id": "subscribe",
-    "description": "title of subscribe button",
-    "defaultMessage": "Subscribe",
-    "originalDefaultMessage": "立即订阅"
-  },
-  {
     "id": "app_title",
     "description": "title of application",
     "defaultMessage": "Listed",
     "originalDefaultMessage": "Listed"
-  },
-  {
-    "id": "signin",
-    "description": "title of sign in button",
-    "defaultMessage": "Sign In",
-    "originalDefaultMessage": "登录"
   },
   {
     "id": "back_to_home",
@@ -102,10 +18,34 @@
     "originalDefaultMessage": "返回主题"
   },
   {
-    "id": "published_at",
-    "description": "title of publsihed time",
-    "defaultMessage": "published at",
-    "originalDefaultMessage": "发布于"
+    "id": "conclusion",
+    "description": "conclusion",
+    "defaultMessage": "Conclusion",
+    "originalDefaultMessage": "结论"
+  },
+  {
+    "id": "description",
+    "description": "decsription of topic",
+    "defaultMessage": "Description",
+    "originalDefaultMessage": "描述"
+  },
+  {
+    "id": "edit",
+    "description": "title of edit button",
+    "defaultMessage": "Edit",
+    "originalDefaultMessage": "编辑"
+  },
+  {
+    "id": "edit_topic",
+    "description": "title of edit topic button",
+    "defaultMessage": "Edit Topic",
+    "originalDefaultMessage": "修改新主题"
+  },
+  {
+    "id": "next_page",
+    "description": "title of next page button",
+    "defaultMessage": "Next",
+    "originalDefaultMessage": "下一页"
   },
   {
     "id": "prev_page",
@@ -114,9 +54,69 @@
     "originalDefaultMessage": "上一页"
   },
   {
-    "id": "next_page",
-    "description": "title of next page button",
-    "defaultMessage": "Next",
-    "originalDefaultMessage": "下一页"
+    "id": "private",
+    "description": "private topic",
+    "defaultMessage": "Private",
+    "originalDefaultMessage": "个人"
+  },
+  {
+    "id": "proof",
+    "description": "proof",
+    "defaultMessage": "Proof",
+    "originalDefaultMessage": "论据"
+  },
+  {
+    "id": "public",
+    "description": "public topic",
+    "defaultMessage": "Public",
+    "originalDefaultMessage": "公开"
+  },
+  {
+    "id": "publish_conclustion",
+    "description": "title of publish conclusion button",
+    "defaultMessage": "Publish New Conclusion",
+    "originalDefaultMessage": "发布新论点"
+  },
+  {
+    "id": "publish_topic",
+    "description": "title of publish topic button",
+    "defaultMessage": "Publish New Topic",
+    "originalDefaultMessage": "发布新主题"
+  },
+  {
+    "id": "published_at",
+    "description": "title of publsihed time",
+    "defaultMessage": "published at",
+    "originalDefaultMessage": "发布于"
+  },
+  {
+    "id": "signin",
+    "description": "title of sign in button",
+    "defaultMessage": "Sign In",
+    "originalDefaultMessage": "登录"
+  },
+  {
+    "id": "subscribe",
+    "description": "title of subscribe button",
+    "defaultMessage": "Subscribe",
+    "originalDefaultMessage": "立即订阅"
+  },
+  {
+    "id": "topic",
+    "description": "title of topic",
+    "defaultMessage": "Topic",
+    "originalDefaultMessage": "主题"
+  },
+  {
+    "id": "type",
+    "description": "type of topic",
+    "defaultMessage": "Type",
+    "originalDefaultMessage": "类型"
+  },
+  {
+    "id": "unsubscribe",
+    "description": "title of unsubscribe button",
+    "defaultMessage": "Unsubscribe",
+    "originalDefaultMessage": "取消订阅"
   }
 ]

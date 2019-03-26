@@ -42,8 +42,24 @@ const globby = require("globby");
       }
     }
 
-    await fs.writeFile(translationFile, JSON.stringify(updated, null, 2), {
-      encoding: "utf8"
-    });
+    await fs.writeFile(
+      translationFile,
+      JSON.stringify(
+        updated.sort((itemA, itemB) => {
+          if (itemA.id === itemB.id) {
+            return 0;
+          } else if (itemA.id > itemB.id) {
+            return 1;
+          } else {
+            return -1;
+          }
+        }),
+        null,
+        2
+      ),
+      {
+        encoding: "utf8"
+      }
+    );
   }
 })();
