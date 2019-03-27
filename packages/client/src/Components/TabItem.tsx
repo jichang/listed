@@ -17,10 +17,10 @@ export interface IProps {
 
 export class TabItem extends React.Component<IProps> {
   render() {
-    let { item } = this.props;
+    let { item, onClick } = this.props;
 
     return (
-      <div className="tab__item">
+      <div className="tab__item" onClick={() => onClick(item)}>
         <img src={item.icons[item.state]} />
         <span>{item.title}</span>
       </div>

@@ -3,14 +3,15 @@ import { observer } from "mobx-react";
 import "./HomePage.css";
 import { List } from "./Components/List";
 import { TopicListItem } from "./Components/TopicListItem";
-import { topicCollectionStore } from "./Stores/TopicListStore";
+import { TopicCollectionStore } from "./Stores/TopicCollectionStore";
 import { Pagination } from "./Components/Pagination";
 import { TabBar } from "./Components/TabBar";
 import { ITabItem } from "./Components/TabItem";
+import { observable, action } from "mobx";
 
 @observer
 export class HomePage extends Component {
-  tabItems: ITabItem[] = [
+  @observable tabItems: ITabItem[] = [
     {
       key: "default",
       title: "All",
@@ -22,7 +23,7 @@ export class HomePage extends Component {
       state: "active"
     },
     {
-      key: "default",
+      key: "subscribe",
       title: "Subscribed",
       icons: {
         active: "",
@@ -32,26 +33,58 @@ export class HomePage extends Component {
       state: "inactive"
     }
   ];
+  @observable topicCollectionStore = new TopicCollectionStore();
+  @observable subscribeCollectionStore = new TopicCollectionStore({
+    category: "subscribe"
+  });
+
+  getActiveCollectionStore() {
+    let activeTabItem = this.tabItems.find(
+      tabItem => tabItem.state === "active"
+    );
+    if (!activeTabItem) {
+      return;
+    }
+
+    switch (activeTabItem.key) {
+      case "default":
+        return this.topicCollectionStore;
+      case "subscribe":
+        return this.subscribeCollectionStore;
+    }
+  }
 
   componentDidMount() {
-    topicCollectionStore.query({
-      keyword: topicCollectionStore.keyword,
-      limit: topicCollectionStore.paginator.limit,
-      offset: topicCollectionStore.paginator.offset
-    });
+    const { topicCollectionStore, subscribeCollectionStore } = this;
+
+    topicCollectionStore.query();
+    subscribeCollectionStore.query();
   }
 
   search(evt: FormEvent) {
     evt.preventDefault();
 
-    topicCollectionStore.query({
-      keyword: topicCollectionStore.keyword,
-      limit: topicCollectionStore.paginator.limit,
-      offset: topicCollectionStore.paginator.offset
+    const topicCollectionStore = this.getActiveCollectionStore();
+    if (!topicCollectionStore) {
+      return;
+    }
+
+    topicCollectionStore.query();
+  }
+
+  @action.bound
+  swithTab(tabItem: ITabItem) {
+    this.tabItems.forEach(_tabItem => {
+      _tabItem.state = tabItem.key === _tabItem.key ? "active" : "inactive";
     });
   }
 
   render() {
+    const topicCollectionStore = this.getActiveCollectionStore();
+    if (!topicCollectionStore) {
+      return;
+    }
+
     return (
       <div className="page page--home">
         <form onSubmit={evt => this.search(evt)}>
@@ -68,7 +101,7 @@ export class HomePage extends Component {
             />
           </div>
         </form>
-        <TabBar items={this.tabItems} onClick={item => console.log(item)} />
+        <TabBar items={this.tabItems} onClick={this.swithTab} />
         <List
           keyProp="id"
           items={topicCollectionStore.collection.items}

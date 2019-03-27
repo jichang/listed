@@ -37,7 +37,8 @@ export interface ITopicCreateParams {
 }
 
 export interface ITopicQueryParams extends IPaginatorParams {
-  keyword: string
+  keyword: string;
+  category?: "subscribe" | "create";
 }
 
 export interface ITopic {

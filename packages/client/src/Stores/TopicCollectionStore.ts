@@ -8,6 +8,7 @@ import {
 import { IPageChangeEvent } from "../Components/Pagination";
 
 export class TopicCollectionStore {
+  defaultParams?: Partial<ITopicQueryParams> = undefined;
   @observable keyword: string = "";
   @observable paginator: IPaginatorParams = {
     offset: 0,
@@ -18,22 +19,31 @@ export class TopicCollectionStore {
     items: []
   };
 
+  constructor(defaultParams?: Partial<ITopicQueryParams>) {
+    this.defaultParams = defaultParams;
+  }
+
   @action
-  async query(params: ITopicQueryParams) {
+  async query() {
     try {
+      let params: ITopicQueryParams = {
+        keyword: this.keyword,
+        limit: this.paginator.limit,
+        offset: this.paginator.offset,
+        ...this.defaultParams
+      };
+      let searchParams = new URLSearchParams();
+      for (let key in params) {
+        searchParams.append(key, (params as any)[key]);
+      }
       let token = window.localStorage.getItem("auth.token");
-      let response = await fetch(
-        `/api/v1/topics?limit=${params.limit}&offset=${params.offset}&keyword=${
-          params.keyword
-        }`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          }
+      let response = await fetch(`/api/v1/topics?${searchParams.toString()}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         }
-      ).then(response => response.json());
+      }).then(response => response.json());
 
       this.update(response);
     } catch (e) {
@@ -50,11 +60,7 @@ export class TopicCollectionStore {
   updatePaginator(evt: IPageChangeEvent) {
     this.paginator.offset = this.paginator.limit * evt.page;
 
-    this.query({
-      keyword: this.keyword,
-      limit: this.paginator.limit,
-      offset: this.paginator.offset
-    });
+    this.query();
   }
 
   @action.bound
@@ -62,5 +68,3 @@ export class TopicCollectionStore {
     this.keyword = keyword;
   }
 }
-
-export const topicCollectionStore = new TopicCollectionStore();
