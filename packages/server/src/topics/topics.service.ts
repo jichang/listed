@@ -15,28 +15,58 @@ export class TopicsService {
   async getAll(user: IUser, params: ITopicQueryParams) {
     let client = await this.databaseService.pool.connect();
     try {
-      let sql = `
-      SELECT
-        count(*) OVER() AS total,
-        id,
-        user_id,
-        title,
-        description,
-        type,
-        created_time,
-        updated_time,
-        status
-      FROM listed.topics
-      WHERE title LIKE $3
-      ORDER BY id DESC
-      OFFSET $1
-      LIMIT $2
-      `;
-      let { rows } = await client.query(sql, [
-        params.offset,
-        params.limit,
-        `%${params.keyword}%`,
-      ]);
+      let rows = [];
+      if (params.category === 'subscribe') {
+        let sql = `
+        SELECT
+          count(*) OVER() AS total,
+          topics.id,
+          topics.user_id,
+          topics.title,
+          topics.description,
+          topics.type,
+          topics.created_time,
+          topics.updated_time,
+          topics.status
+        FROM listed.subscriptions AS subscriptions
+        LEFT JOIN listed.topics AS topics ON subscriptions.topic_id = topics.id
+        WHERE topics.title LIKE $3 AND subscriptions.user_id = $4
+        ORDER BY topics.id DESC
+        OFFSET $1
+        LIMIT $2
+        `;
+        let result = await client.query(sql, [
+          params.offset,
+          params.limit,
+          `%${params.keyword}%`,
+          user.id,
+        ]);
+        rows = result.rows;
+      } else {
+        let sql = `
+        SELECT
+          count(*) OVER() AS total,
+          id,
+          user_id,
+          title,
+          description,
+          type,
+          created_time,
+          updated_time,
+          status
+        FROM listed.topics
+        WHERE title LIKE $3
+        ORDER BY id DESC
+        OFFSET $1
+        LIMIT $2
+        `;
+        let result = await client.query(sql, [
+          params.offset,
+          params.limit,
+          `%${params.keyword}%`,
+        ]);
+        rows = result.rows;
+      }
 
       client.release();
 
