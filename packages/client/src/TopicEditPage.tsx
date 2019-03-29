@@ -35,7 +35,7 @@ export class TopicEditPage extends Component<
   };
 
   updateType = (evt: ChangeEvent<HTMLInputElement>) => {
-    topicEditStore.updateType(evt.target.value as TopicType);
+    topicEditStore.updateType(parseInt(evt.target.value, 10) as TopicType);
   };
 
   render() {
@@ -84,7 +84,7 @@ export class TopicEditPage extends Component<
                   type="radio"
                   name="topic-name"
                   value="public"
-                  checked={topicEditStore.type === "public"}
+                  checked={topicEditStore.type === TopicType.PUBLIC}
                   onChange={this.updateType}
                 />
                 <span>
@@ -100,7 +100,7 @@ export class TopicEditPage extends Component<
                   type="radio"
                   name="topic-name"
                   value="private"
-                  checked={topicEditStore.type === "private"}
+                  checked={topicEditStore.type === TopicType.PRIVATE}
                   onChange={this.updateType}
                 />
                 <span>

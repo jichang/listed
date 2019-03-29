@@ -5,7 +5,7 @@ export class TopicEditStore {
   @observable topic: Option<ITopic> = null;
   @observable title: string = "";
   @observable description: string = "";
-  @observable type: TopicType = "public";
+  @observable type: TopicType = TopicType.PUBLIC;
   @observable errors = {
     title: "",
     description: "",
@@ -92,7 +92,7 @@ export class TopicEditStore {
     this.topic = null;
     this.title = "";
     this.description = "";
-    this.type = "public";
+    this.type = TopicType.PUBLIC;
   }
 }
 

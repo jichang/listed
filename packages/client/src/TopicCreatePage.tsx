@@ -24,7 +24,7 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
   };
 
   updateType = (evt: ChangeEvent<HTMLInputElement>) => {
-    topicCreateStore.updateType(evt.target.value as TopicType);
+    topicCreateStore.updateType(parseInt(evt.target.value, 10) as TopicType);
   };
 
   render() {
@@ -73,7 +73,7 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
                   type="radio"
                   name="topic-name"
                   value="public"
-                  checked={topicCreateStore.type === "public"}
+                  checked={topicCreateStore.type === TopicType.PUBLIC}
                   onChange={this.updateType}
                 />
                 <span>
@@ -89,7 +89,7 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
                   type="radio"
                   name="topic-name"
                   value="private"
-                  checked={topicCreateStore.type === "private"}
+                  checked={topicCreateStore.type === TopicType.PRIVATE}
                   onChange={this.updateType}
                 />
                 <span>

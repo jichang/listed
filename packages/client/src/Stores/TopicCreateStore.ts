@@ -4,7 +4,7 @@ import { TopicType, ITopic } from "@listed/shared";
 export class TopicCreateStore {
   @observable title: string = "";
   @observable description: string = "";
-  @observable type: TopicType = "public";
+  @observable type: TopicType = TopicType.PUBLIC;
   @observable errors = {
     title: "",
     description: "",
@@ -60,7 +60,7 @@ export class TopicCreateStore {
   reset() {
     this.title = "";
     this.description = "";
-    this.type = "public";
+    this.type = TopicType.PUBLIC;
   }
 }
 

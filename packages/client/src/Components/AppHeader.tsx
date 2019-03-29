@@ -6,6 +6,7 @@ import { SiteLogo } from "./SiteLogo";
 import { FormattedMessage } from "react-intl";
 import { topicStore } from "../Stores/TopicStore";
 import { SigninRequired } from "./SigninRequired";
+import { TopicType } from "@listed/shared";
 
 @observer
 export class AppHeader extends React.Component<RouteComponentProps<{}>> {
@@ -99,7 +100,7 @@ export class TopicPageHeader extends React.Component<
   render() {
     let canPublishConclusion =
       topicStore.topic &&
-      (topicStore.topic.isOwner || topicStore.topic.type === "public");
+      (topicStore.topic.isOwner || topicStore.topic.type === TopicType.PUBLIC);
 
     return (
       <div className="app__header">

@@ -104,7 +104,7 @@ export class ConclusionsService {
       }
 
       let topicRow = topicRows[0];
-      if (topicRow.type !== 'public' && topicRow.user_id !== user.id) {
+      if (topicRow.type !== TopicType.PUBLIC && topicRow.user_id !== user.id) {
         throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
       }
 

@@ -76,7 +76,7 @@ export class TopicsService {
           isOwner: !!user && row.user_id === user.id,
           title: row.title,
           description: row.description,
-          type: (row.type === 0 ? 'private' : 'public') as TopicType,
+          type: row.type,
           subscription: null,
           createdTime: row.created_time,
           updatedTime: row.updated_time,
@@ -109,7 +109,7 @@ export class TopicsService {
         user.id,
         params.title,
         params.description,
-        params.type === 'public' ? 0 : 1,
+        params.type,
       ]);
 
       let topicRow = topicRows[0];
@@ -134,7 +134,7 @@ export class TopicsService {
         isOwner: true,
         title: topicRow.title,
         description: topicRow.description,
-        type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
+        type: topicRow.type as TopicType,
         subscription: {
           id: subscriptionRow.id,
           createdTime: subscriptionRow.created_time,
@@ -209,7 +209,7 @@ export class TopicsService {
         isOwner: !!user && topicRow.user_id === user.id,
         title: topicRow.title,
         description: topicRow.description,
-        type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
+        type: topicRow.type as TopicType,
         subscription,
         createdTime: topicRow.created_time,
         updatedTime: topicRow.updated_time,
@@ -240,7 +240,7 @@ export class TopicsService {
         topicId,
         params.title,
         params.description,
-        params.type === 'public' ? 0 : 1,
+        params.type,
       ]);
 
       client.release();
@@ -252,7 +252,7 @@ export class TopicsService {
         isOwner: true,
         title: topicRow.title,
         description: topicRow.description,
-        type: (topicRow.type === 0 ? 'private' : 'public') as TopicType,
+        type: topicRow.type as TopicType,
         createdTime: topicRow.created_time,
         updatedTime: topicRow.updated_time,
         status: topicRow.status,

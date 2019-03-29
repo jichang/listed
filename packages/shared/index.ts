@@ -28,7 +28,10 @@ export interface ISession {
   user: Option<IUser>;
 }
 
-export type TopicType = "public" | "private";
+export enum TopicType {
+  PUBLIC = 0,
+  PRIVATE = 1
+}
 
 export interface ITopicCreateParams {
   title: string;
