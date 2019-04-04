@@ -17,7 +17,7 @@ export class SigninRequired extends React.Component {
     } else if (enableSignin) {
       return (
         <a
-          href={`${oauthEndpoint}?client_id=${clientId}&server_id=${serverId}&scope_name=user_id&redirect_uri=${
+          href={`${oauthEndpoint}?client_id=${clientId}&server_id=${serverId}&scope_name=user.id&redirect_uri=${
             window.location.origin
           }/oauth&response_type=code&state=test`}
         >
