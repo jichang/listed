@@ -72,7 +72,7 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
                 <input
                   type="radio"
                   name="topic-name"
-                  value="public"
+                  value={TopicType.PUBLIC}
                   checked={topicCreateStore.type === TopicType.PUBLIC}
                   onChange={this.updateType}
                 />
@@ -88,7 +88,7 @@ export class TopicCreatePage extends Component<RouteComponentProps<{}>> {
                 <input
                   type="radio"
                   name="topic-name"
-                  value="private"
+                  value={TopicType.PRIVATE}
                   checked={topicCreateStore.type === TopicType.PRIVATE}
                   onChange={this.updateType}
                 />

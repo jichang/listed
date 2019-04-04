@@ -83,7 +83,7 @@ export class TopicEditPage extends Component<
                 <input
                   type="radio"
                   name="topic-name"
-                  value="public"
+                  value={TopicType.PUBLIC}
                   checked={topicEditStore.type === TopicType.PUBLIC}
                   onChange={this.updateType}
                 />
@@ -99,7 +99,7 @@ export class TopicEditPage extends Component<
                 <input
                   type="radio"
                   name="topic-name"
-                  value="private"
+                  value={TopicType.PRIVATE}
                   checked={topicEditStore.type === TopicType.PRIVATE}
                   onChange={this.updateType}
                 />
