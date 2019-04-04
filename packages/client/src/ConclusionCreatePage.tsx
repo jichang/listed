@@ -67,6 +67,9 @@ export class ConclusionCreatePage extends Component<
               </div>
             );
           })}
+          {conclusionCreateStore.proofs.length === 0 ? (
+            <div className="proofs__placeholder">create conclusion</div>
+          ) : null}
           <div className="form__field form__field--action">
             <button className="button button--primary button--block">
               <FormattedMessage

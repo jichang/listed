@@ -44,3 +44,11 @@
 textarea.form__control {
   height: 6rem;
 }
+
+.proofs__placeholder {
+  padding: 3rem 0;
+  border: 1px solid #cccccc;
+
+  color: #999999;
+  text-align: center;
+}

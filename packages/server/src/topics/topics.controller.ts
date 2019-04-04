@@ -17,7 +17,7 @@ import {
 } from '@listed/shared';
 import { TopicsService } from './topics.service';
 import { AuthGuard } from '@nestjs/passport';
-import { UserGuard } from 'src/user.guard';
+import { UserGuard } from '../user.guard';
 
 @Controller('/api/v1')
 export class TopicsController {

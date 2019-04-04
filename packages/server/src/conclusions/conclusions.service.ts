@@ -6,7 +6,7 @@ import {
   IUser,
   TopicType,
 } from '@listed/shared';
-import { DatabaseService } from 'src/database/database.service';
+import { DatabaseService } from '../database/database.service';
 
 @Injectable()
 export class ConclusionsService {

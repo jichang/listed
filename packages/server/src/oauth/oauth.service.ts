@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { OAuthParams, IUser } from '@listed/shared';
 import axios from 'axios';
-import { ConfigService } from 'src/config/config.service';
-import { DatabaseService } from 'src/database/database.service';
+import { ConfigService } from '../config/config.service';
+import { DatabaseService } from '../database/database.service';
 
 export interface OAuthResponse {
   id: number;
