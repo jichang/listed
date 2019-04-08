@@ -16,12 +16,14 @@ import {
   IConclusionCreateParams,
 } from '@listed/shared';
 import { AuthGuard } from '@nestjs/passport';
+import { UserGuard } from '../user.guard';
 
 @Controller('/api/v1')
 export class ConclusionsController {
   constructor(private readonly conclusionsService: ConclusionsService) {}
 
   @Get('/topics/:id/conclusions')
+  @UseGuards(UserGuard)
   async getAll(
     @Req() req,
     @Param() { id }: { id: string },

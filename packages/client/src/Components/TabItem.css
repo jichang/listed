@@ -1,20 +1,23 @@
 .tab__item {
   flex: 1;
   padding: 0.5rem;
-  border-bottom: 2px solid transparent;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
 
   text-align: center;
 }
 
 .tab__item--disabled {
-  color: #cccccc;
+  color: #efefef;
+  border-bottom-color: #efefef;
 }
 
 .tab__item--inactive {
-  color: #999999;
+  color: #cccccc;
+  border-bottom-color: #cccccc;
 }
 
 .tab__item--active {
   color: #000000;
-  border-bottom: 2px solid #000000;
+  border-bottom-color: #000000;
 }

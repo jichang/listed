@@ -11,7 +11,7 @@ export class SigninRequired extends React.Component {
     const oauthEndpoint = process.env.REACT_APP_OAUTH_ENDPOINT;
     const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
     const serverId = process.env.REACT_APP_OAUTH_SERVER_ID;
-    console.log(process.env);
+
     if (sessionStore.session.user) {
       return this.props.children;
     } else if (enableSignin) {

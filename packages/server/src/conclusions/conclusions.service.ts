@@ -42,6 +42,8 @@ export class ConclusionsService {
 
       let conclusions: IConclusion[] = [];
       for (let row of rows) {
+        let isOwner = !!user && user.id === row.user_id;
+
         let sql = `
         SELECT *
         FROM listed.proofs
@@ -49,8 +51,6 @@ export class ConclusionsService {
         ORDER BY id ASC
         `;
         let { rows } = await client.query(sql, [row.id]);
-
-        let isOwner = !!user && user.id === user.id;
 
         let conclusion: IConclusion = {
           id: row.id,
