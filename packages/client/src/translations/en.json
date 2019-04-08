@@ -86,7 +86,7 @@
   {
     "id": "published_at",
     "description": "title of publsihed time",
-    "defaultMessage": "published at",
+    "defaultMessage": "published at ",
     "originalDefaultMessage": "发布于"
   },
   {

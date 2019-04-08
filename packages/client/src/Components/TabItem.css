@@ -1,5 +1,20 @@
 .tab__item {
   flex: 1;
+  padding: 0.5rem;
+  border-bottom: 2px solid transparent;
 
   text-align: center;
+}
+
+.tab__item--disabled {
+  color: #cccccc;
+}
+
+.tab__item--inactive {
+  color: #999999;
+}
+
+.tab__item--active {
+  color: #000000;
+  border-bottom: 2px solid #000000;
 }

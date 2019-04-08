@@ -9,9 +9,11 @@ import { TabBar } from "./Components/TabBar";
 import { ITabItem } from "./Components/TabItem";
 import { observable, action } from "mobx";
 
+type TabKey = "default" | "subscribed" | "created";
+
 @observer
 export class HomePage extends Component {
-  @observable tabItems: ITabItem[] = [
+  @observable tabItems: ITabItem<TabKey>[] = [
     {
       key: "default",
       title: "All",
@@ -23,8 +25,18 @@ export class HomePage extends Component {
       state: "active"
     },
     {
-      key: "subscribe",
+      key: "subscribed",
       title: "Subscribed",
+      icons: {
+        active: "",
+        inactive: "",
+        disabled: ""
+      },
+      state: "inactive"
+    },
+    {
+      key: "created",
+      title: "My",
       icons: {
         active: "",
         inactive: "",
@@ -34,8 +46,11 @@ export class HomePage extends Component {
     }
   ];
   @observable topicCollectionStore = new TopicCollectionStore();
-  @observable subscribeCollectionStore = new TopicCollectionStore({
-    category: "subscribe"
+  @observable subscribedCollectionStore = new TopicCollectionStore({
+    category: "subscribed"
+  });
+  @observable createdCollectionStore = new TopicCollectionStore({
+    category: "created"
   });
 
   getActiveCollectionStore() {
@@ -49,16 +64,23 @@ export class HomePage extends Component {
     switch (activeTabItem.key) {
       case "default":
         return this.topicCollectionStore;
-      case "subscribe":
-        return this.subscribeCollectionStore;
+      case "subscribed":
+        return this.subscribedCollectionStore;
+      case "created":
+        return this.createdCollectionStore;
     }
   }
 
   componentDidMount() {
-    const { topicCollectionStore, subscribeCollectionStore } = this;
+    const {
+      topicCollectionStore,
+      subscribedCollectionStore,
+      createdCollectionStore
+    } = this;
 
     topicCollectionStore.query();
-    subscribeCollectionStore.query();
+    subscribedCollectionStore.query();
+    createdCollectionStore.query();
   }
 
   search(evt: FormEvent) {
@@ -73,7 +95,7 @@ export class HomePage extends Component {
   }
 
   @action.bound
-  swithTab(tabItem: ITabItem) {
+  swithTab(tabItem: ITabItem<TabKey>) {
     this.tabItems.forEach(_tabItem => {
       _tabItem.state = tabItem.key === _tabItem.key ? "active" : "inactive";
     });
@@ -93,6 +115,7 @@ export class HomePage extends Component {
               id="keyword"
               type="text"
               name="keyword"
+              placeholder="Search topics by title"
               value={topicCollectionStore.keyword}
               onChange={evt => {
                 topicCollectionStore.updateKeyword(evt.target.value);

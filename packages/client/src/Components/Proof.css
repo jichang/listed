@@ -1,5 +1,19 @@
 .proof code {
   display: block;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  color: #333333;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.proof p {
+  text-indent: 2rem;
+}
+
+.proof ol {
+  padding: 0;
+  list-style-position: inside;
+}
+
+.proof ol li {
+  text-indent: 2rem;
 }
