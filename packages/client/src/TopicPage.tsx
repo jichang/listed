@@ -9,6 +9,7 @@ import { List } from "./Components/List";
 import { Badge } from "./Components/Badge";
 import { PublishDate } from "./Components/PublishDate";
 import { FormattedMessage } from "react-intl";
+import { Pagination } from "./Components/Pagination";
 
 export interface IRouterParams {
   id: string;
@@ -85,6 +86,13 @@ export class TopicPage extends Component<RouteComponentProps<IRouterParams>> {
             component={ConclusionListItem}
             keyProp="id"
           />
+          {topicStore.conclusions.total > topicStore.paginator.limit ? (
+            <Pagination
+              total={topicStore.conclusions.total}
+              pageSize={topicStore.paginator.limit}
+              onChange={topicStore.updatePaginator}
+            />
+          ) : null}
         </div>
       </div>
     );

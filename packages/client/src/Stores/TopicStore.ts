@@ -8,6 +8,7 @@ import {
   IPaginatorParams,
   ISubscription
 } from "@listed/shared";
+import { IPageChangeEvent } from "../Components/Pagination";
 
 export class TopicStore {
   @observable loadingStates: { [index: string]: LoadingState } = {};
@@ -18,7 +19,7 @@ export class TopicStore {
   };
   @observable paginator: IPaginatorParams = {
     offset: 0,
-    limit: 50
+    limit: 20
   };
 
   @action.bound
@@ -70,6 +71,15 @@ export class TopicStore {
   @action.bound
   updateConclusions(conclusions: ICollection<IConclusion>) {
     this.conclusions = conclusions;
+  }
+
+  @action.bound
+  updatePaginator(evt: IPageChangeEvent) {
+    this.paginator.offset = this.paginator.limit * evt.page;
+
+    if (this.topic) {
+      this.selectConclusions(this.topic.id, this.paginator);
+    }
   }
 
   @action.bound
