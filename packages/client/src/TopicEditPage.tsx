@@ -1,6 +1,6 @@
 import React, { Component, FormEvent, ChangeEvent } from "react";
 import { observer } from "mobx-react";
-import "./TopicCreatePage.css";
+import "./TopicEditPage.css";
 import { topicEditStore } from "./Stores/TopicEditStore";
 import { TopicType } from "@listed/shared";
 import { RouteComponentProps } from "react-router";

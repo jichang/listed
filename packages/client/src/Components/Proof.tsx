@@ -2,6 +2,7 @@ import React from "react";
 import { IProof } from "@listed/shared";
 import ReactMarkdown from "react-markdown";
 import "./Proof.css";
+import { Badge } from "./Badge";
 
 export interface IProofProps {
   index: number;
@@ -10,7 +11,7 @@ export interface IProofProps {
 
 export class Proof extends React.Component<IProofProps> {
   render() {
-    const { index, proof } = this.props;
+    const { proof } = this.props;
     return (
       <div className="proof">
         <ReactMarkdown source={proof.content} />

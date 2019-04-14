@@ -2,6 +2,10 @@
   display: block;
   padding: 2rem;
   color: #333333;
+
+  text-indent: 0;
+
+  overflow: auto;
   background: rgba(0, 0, 0, 0.03);
 }
 
@@ -16,4 +20,8 @@
 
 .proof ol li {
   text-indent: 2rem;
+}
+
+.proof .badge {
+  color: #999;
 }

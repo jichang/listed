@@ -1,5 +1,5 @@
 import React from "react";
-import { IConclusion } from "@listed/shared";
+import { IConclusion, ITopic } from "@listed/shared";
 import { Conclusion } from "./Conclusion";
 import { List } from "./List";
 import { ProofListItem } from "./ProofListItem";
@@ -8,6 +8,7 @@ import { PublishDate } from "./PublishDate";
 export interface IConclusionListItemProps {
   index: number;
   item: IConclusion;
+  topic: ITopic;
 }
 
 export class ConclusionListItem extends React.Component<
@@ -23,7 +24,15 @@ export class ConclusionListItem extends React.Component<
         <List
           keyProp="id"
           items={item.proofs.items}
-          component={ProofListItem}
+          component={props => {
+            return (
+              <ProofListItem
+                topic={this.props.topic}
+                conclusion={item}
+                {...props}
+              />
+            );
+          }}
         />
       </div>
     );

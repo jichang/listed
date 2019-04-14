@@ -15,6 +15,7 @@ import { OAuthPage } from "./OAuthPage";
 import { sessionStore } from "./Stores/SessionStore";
 import { TopicCreatePage } from "./TopicCreatePage";
 import { TopicEditPage } from "./TopicEditPage";
+import { ProofEditPage } from "./ProofEditPage";
 import { ConclusionCreatePage } from "./ConclusionCreatePage";
 
 export interface IProps extends RouteComponentProps<any> {}
@@ -55,6 +56,11 @@ export class App extends Component<IProps> {
               path="/topics/:id/conclusions/create"
               component={ConclusionCreatePageHeader}
             />
+            <Route
+              exact
+              path="/topics/:id/conclusions/create"
+              component={ConclusionCreatePageHeader}
+            />
             <Route exact path="/topics" component={AppHeader} />
           </Switch>
         </div>
@@ -69,6 +75,11 @@ export class App extends Component<IProps> {
               exact
               path="/topics/:id/conclusions/create"
               component={ConclusionCreatePage}
+            />
+            <Route
+              exact
+              path="/topics/:topicId/conclusions/:conclusionId/proofs/:proofId/edit"
+              component={ProofEditPage}
             />
             <Route exact path="/topics" component={HomePage} />
             <Route exact path="/" component={HomePage} />

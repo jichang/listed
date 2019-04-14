@@ -276,20 +276,19 @@ export class TopicsService {
         params.type,
       ]);
 
-      client.release();
-
-      let topicRow = rows[0];
+      let row = rows[0];
 
       let topic = {
-        id: topicRow.id,
+        id: row.id,
         isOwner: true,
-        title: topicRow.title,
-        description: topicRow.description,
-        type: topicRow.type as TopicType,
-        createdTime: topicRow.created_time,
-        updatedTime: topicRow.updated_time,
-        status: topicRow.status,
+        title: row.title,
+        description: row.description,
+        type: row.type as TopicType,
+        createdTime: row.created_time,
+        updatedTime: row.updated_time,
+        status: row.status,
       };
+      client.release();
 
       return {
         topic,

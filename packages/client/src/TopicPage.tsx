@@ -5,11 +5,12 @@ import { Topic } from "./Components/Topic";
 import { topicStore } from "./Stores/TopicStore";
 import { RouteComponentProps, Link, NavLink } from "react-router-dom";
 import { ConclusionListItem } from "./Components/ConclusionListItem";
-import { List } from "./Components/List";
+import { List, ItemProps } from "./Components/List";
 import { Badge } from "./Components/Badge";
 import { PublishDate } from "./Components/PublishDate";
 import { FormattedMessage } from "react-intl";
 import { Pagination } from "./Components/Pagination";
+import { IConclusion } from "@listed/shared";
 
 export interface IRouterParams {
   id: string;
@@ -83,7 +84,11 @@ export class TopicPage extends Component<RouteComponentProps<IRouterParams>> {
         <div className="topic__conclusions">
           <List
             items={topicStore.conclusions.items}
-            component={ConclusionListItem}
+            component={(props: ItemProps<IConclusion>) => {
+              return (
+                <ConclusionListItem topic={topicStore.topic!} {...props} />
+              );
+            }}
             keyProp="id"
           />
           {topicStore.conclusions.total > topicStore.paginator.limit ? (
