@@ -61,6 +61,11 @@ export class App extends Component<IProps> {
               path="/topics/:id/conclusions/create"
               component={ConclusionCreatePageHeader}
             />
+            <Route
+              exact
+              path="/topics/:id/conclusions/:conclusionId/proofs/:proofId/edit"
+              component={ConclusionCreatePageHeader}
+            />
             <Route exact path="/topics" component={AppHeader} />
           </Switch>
         </div>

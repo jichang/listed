@@ -106,7 +106,9 @@ export class ProofEditPage extends Component<
         ) : null}
 
         {this.tabItems[1].state === "active" ? (
-          <ReactMarkdown source={proofEditStore.content} />
+          <div className="proof">
+            <ReactMarkdown source={proofEditStore.content} />
+          </div>
         ) : null}
       </div>
     );
