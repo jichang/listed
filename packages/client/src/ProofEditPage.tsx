@@ -4,6 +4,12 @@ import "./ProofEditPage.css";
 import { proofEditStore } from "./Stores/ProofEditStore";
 import { RouteComponentProps } from "react-router";
 import { FormattedMessage } from "react-intl";
+import { TabBar } from "./Components/TabBar";
+import { ITabItem } from "./Components/TabItem";
+import { action, observable } from "mobx";
+import ReactMarkdown from "react-markdown";
+
+type TabKey = "edit" | "preview";
 
 export interface IRouterParams {
   topicId: string;
@@ -15,6 +21,29 @@ export interface IRouterParams {
 export class ProofEditPage extends Component<
   RouteComponentProps<IRouterParams>
 > {
+  @observable tabItems: ITabItem<TabKey>[] = [
+    {
+      key: "edit",
+      title: "Edit",
+      icons: {
+        active: "",
+        inactive: "",
+        disabled: ""
+      },
+      state: "active"
+    },
+    {
+      key: "preview",
+      title: "Preview",
+      icons: {
+        active: "",
+        inactive: "",
+        disabled: ""
+      },
+      state: "inactive"
+    }
+  ];
+
   componentDidMount() {
     const { params } = this.props.match;
     proofEditStore.select(params.topicId, params.conclusionId, params.proofId);
@@ -36,34 +65,49 @@ export class ProofEditPage extends Component<
     proofEditStore.updateContent(evt.target.value);
   };
 
+  @action.bound
+  swithTab(tabItem: ITabItem<TabKey>) {
+    this.tabItems.forEach(_tabItem => {
+      _tabItem.state = tabItem.key === _tabItem.key ? "active" : "inactive";
+    });
+  }
+
   render() {
     return (
       <div className="page page--proof-edit">
-        <form className="form" onSubmit={evt => this.update(evt)}>
-          <div className="form__field">
-            <label className="form__field__label">
-              <FormattedMessage
-                id="description"
-                defaultMessage="描述"
-                description="decsription of topic"
+        <TabBar items={this.tabItems} onClick={this.swithTab} />
+
+        {this.tabItems[0].state === "active" ? (
+          <form className="form" onSubmit={evt => this.update(evt)}>
+            <div className="form__field">
+              <label className="form__field__label">
+                <FormattedMessage
+                  id="description"
+                  defaultMessage="描述"
+                  description="decsription of topic"
+                />
+              </label>
+              <textarea
+                className="form__control"
+                onChange={this.updateContent}
+                value={proofEditStore.content}
               />
-            </label>
-            <textarea
-              className="form__control"
-              onChange={this.updateContent}
-              value={proofEditStore.content}
-            />
-          </div>
-          <div className="form__field form__field--action">
-            <button className="button button--primary button--block">
-              <FormattedMessage
-                id="edit_proof"
-                defaultMessage="修改论据"
-                description="title of edit proof button"
-              />
-            </button>
-          </div>
-        </form>
+            </div>
+            <div className="form__field form__field--action">
+              <button className="button button--primary button--block">
+                <FormattedMessage
+                  id="edit_proof"
+                  defaultMessage="修改论据"
+                  description="title of edit proof button"
+                />
+              </button>
+            </div>
+          </form>
+        ) : null}
+
+        {this.tabItems[1].state === "active" ? (
+          <ReactMarkdown source={proofEditStore.content} />
+        ) : null}
       </div>
     );
   }
