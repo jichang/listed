@@ -3,12 +3,7 @@ import { Switch, Route, RouteComponentProps } from "react-router-dom";
 import { observer } from "mobx-react";
 import "./App.css";
 
-import {
-  AppHeader,
-  TopicPageHeader,
-  TopicCreatePageHeader,
-  ConclusionCreatePageHeader
-} from "./Components/AppHeader";
+import { AppHeader } from "./Components/AppHeader";
 import { HomePage } from "./HomePage";
 import { TopicPage } from "./TopicPage";
 import { OAuthPage } from "./OAuthPage";
@@ -17,6 +12,10 @@ import { TopicCreatePage } from "./TopicCreatePage";
 import { TopicEditPage } from "./TopicEditPage";
 import { ProofEditPage } from "./ProofEditPage";
 import { ConclusionCreatePage } from "./ConclusionCreatePage";
+import {
+  TopicCreateAction,
+  ConclusionCreateAction
+} from "./Components/AppActions";
 
 export interface IProps extends RouteComponentProps<any> {}
 
@@ -39,34 +38,7 @@ export class App extends Component<IProps> {
       <div>
         <div className="app__header">
           <Switch>
-            <Route exact path="/" component={AppHeader} />
-            <Route
-              exact
-              path="/topics/create"
-              component={TopicCreatePageHeader}
-            />
-            <Route exact path="/topics/:id" component={TopicPageHeader} />
-            <Route
-              exact
-              path="/topics/:id/edit"
-              component={ConclusionCreatePageHeader}
-            />
-            <Route
-              exact
-              path="/topics/:id/conclusions/create"
-              component={ConclusionCreatePageHeader}
-            />
-            <Route
-              exact
-              path="/topics/:id/conclusions/create"
-              component={ConclusionCreatePageHeader}
-            />
-            <Route
-              exact
-              path="/topics/:id/conclusions/:conclusionId/proofs/:proofId/edit"
-              component={ConclusionCreatePageHeader}
-            />
-            <Route exact path="/topics" component={AppHeader} />
+            <Route path="/" component={AppHeader} />
           </Switch>
         </div>
 
@@ -74,20 +46,36 @@ export class App extends Component<IProps> {
           <Switch>
             <Route exact path="/oauth" component={OAuthPage} />
             <Route exact path="/topics/create" component={TopicCreatePage} />
-            <Route exact path="/topics/:id" component={TopicPage} />
-            <Route exact path="/topics/:id/edit" component={TopicEditPage} />
+            <Route exact path="/topics/:id(\d+)" component={TopicPage} />
             <Route
               exact
-              path="/topics/:id/conclusions/create"
+              path="/topics/:id(\d+)/edit"
+              component={TopicEditPage}
+            />
+            <Route
+              exact
+              path="/topics/:id(\d+)/conclusions/create"
               component={ConclusionCreatePage}
             />
             <Route
               exact
-              path="/topics/:topicId/conclusions/:conclusionId/proofs/:proofId/edit"
+              path="/topics/:topicId(\d+)/conclusions/:conclusionId(\d+)/proofs/:proofId(\d+)/edit"
               component={ProofEditPage}
             />
             <Route exact path="/topics" component={HomePage} />
             <Route exact path="/" component={HomePage} />
+          </Switch>
+        </div>
+
+        <div className="app__actions">
+          <Switch>
+            <Route
+              exact
+              path="/topics/:id(\d+)"
+              component={ConclusionCreateAction}
+            />
+            <Route exact path="/topics" component={TopicCreateAction} />
+            <Route exact path="/" component={TopicCreateAction} />
           </Switch>
         </div>
       </div>

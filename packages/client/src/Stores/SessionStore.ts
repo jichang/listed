@@ -42,6 +42,12 @@ export class SessionStore {
     this.state = user ? "succeed" : "failed";
     this.session.user = user;
   }
+
+  @action.bound
+  clear() {
+    window.localStorage.removeItem("auth.token");
+    this.update(null);
+  }
 }
 
 export const sessionStore = new SessionStore();

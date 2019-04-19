@@ -1,6 +1,26 @@
 .app__body {
-  padding: 0 0.5rem;
+  padding: 1rem;
   margin: 0 auto;
   max-width: 48rem;
   width: 100%;
+}
+
+.app__actions {
+  position: fixed;
+  bottom: 0;
+  right: 50%;
+
+  padding: 2rem 1rem;
+}
+
+@media screen and (max-width: 48rem) {
+  .app__actions {
+    transform: translateX(50vw);
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  .app__actions {
+    transform: translateX(24rem);
+  }
 }
