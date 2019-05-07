@@ -1,16 +1,37 @@
 .proof code {
-  display: block;
-  padding: 2rem;
   color: #333333;
 
   text-indent: 0;
 
-  overflow: auto;
   background: rgba(0, 0, 0, 0.03);
 }
 
-.proof p {
-  text-indent: 2rem;
+.proof pre code {
+  display: block;
+  padding: 2rem;
+
+  overflow: auto;
+}
+
+.proof blockquote {
+  padding: 0.5rem;
+  border-left: 0.5rem solid #f0f0f0;
+  margin: 1rem auto;
+
+  color: #555555;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.5;
+
+  background: #fcfcfc;
+}
+
+.proof blockquote span {
+  display: block;
+  color: #333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 
 .proof ol {
