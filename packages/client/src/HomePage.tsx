@@ -8,6 +8,7 @@ import { Pagination } from "./Components/Pagination";
 import { TabBar } from "./Components/TabBar";
 import { ITabItem } from "./Components/TabItem";
 import { observable, action } from "mobx";
+import { Placeholder } from "./Components/Placeholder";
 
 type TabKey = "default" | "subscribed" | "created";
 
@@ -130,6 +131,11 @@ export class HomePage extends Component {
           items={topicCollectionStore.collection.items}
           component={TopicListItem}
         />
+        {topicCollectionStore.collection.total === 0 ? (
+          <Placeholder>
+            <p>No topics found</p>
+          </Placeholder>
+        ) : null}
         {topicCollectionStore.collection.total >
         topicCollectionStore.paginator.limit ? (
           <Pagination

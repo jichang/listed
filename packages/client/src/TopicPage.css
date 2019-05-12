@@ -1,5 +1,5 @@
 .topic__info {
-  margin: 2em 0;
+  margin: 0 0 1rem 0;
 }
 
 .topic__info .topic__action .badge {
@@ -11,16 +11,9 @@
 }
 
 .topic__conclusions .list__item--conclusion {
-  margin: 0 0 3rem 0;
+  padding: 2rem 0;
 }
 
 .conclusion__title {
   margin: 0.5rem 0;
-  font-size: 1.5rem;
-}
-
-.topic__conclusions .list__item--conclusion .list__item--proof {
-  margin: 0.5rem 0;
-  padding: 1rem;
-  border: 1px solid #cccccc;
 }

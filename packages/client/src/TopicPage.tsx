@@ -11,6 +11,7 @@ import { PublishDate } from "./Components/PublishDate";
 import { FormattedMessage } from "react-intl";
 import { Pagination } from "./Components/Pagination";
 import { IConclusion } from "@listed/shared";
+import { Placeholder } from "./Components/Placeholder";
 
 export interface IRouterParams {
   id: string;
@@ -91,6 +92,11 @@ export class TopicPage extends Component<RouteComponentProps<IRouterParams>> {
             }}
             keyProp="id"
           />
+          {topicStore.conclusions.total === 0 ? (
+            <Placeholder>
+              <p>No conslusions found</p>
+            </Placeholder>
+          ) : null}
           {topicStore.conclusions.total > topicStore.paginator.limit ? (
             <Pagination
               total={topicStore.conclusions.total}

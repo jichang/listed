@@ -36,11 +36,9 @@ export class App extends Component<IProps> {
 
     return (
       <div>
-        <div className="app__header">
-          <Switch>
-            <Route path="/" component={AppHeader} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route path="/" component={AppHeader} />
+        </Switch>
 
         <div className="app__body">
           <Switch>
