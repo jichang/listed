@@ -94,7 +94,13 @@ export class TopicPage extends Component<RouteComponentProps<IRouterParams>> {
           />
           {topicStore.conclusions.total === 0 ? (
             <Placeholder>
-              <p>No conslusions found</p>
+              <p>
+                <FormattedMessage
+                  id="no_conlisions_found"
+                  defaultMessage="没有相关结论"
+                  description="placeholder of conclusion list"
+                />
+              </p>
             </Placeholder>
           ) : null}
           {topicStore.conclusions.total > topicStore.paginator.limit ? (

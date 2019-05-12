@@ -33,6 +33,7 @@ const globby = require("globby");
         _message => message.id === _message.id
       );
       if (
+        !currentTranslation ||
         currentTranslation.originalDefaultMessage !== message.defaultMessage
       ) {
         message.originalDefaultMessage = message.defaultMessage;

@@ -6,18 +6,6 @@
     "originalDefaultMessage": "Listed"
   },
   {
-    "id": "back_to_home",
-    "description": "title fo back to home button",
-    "defaultMessage": "返回首页",
-    "originalDefaultMessage": "返回首页"
-  },
-  {
-    "id": "back_to_topic",
-    "description": "title fo back to topic button",
-    "defaultMessage": "返回主题",
-    "originalDefaultMessage": "返回主题"
-  },
-  {
     "id": "conclusion",
     "description": "conclusion",
     "defaultMessage": "结论",
@@ -36,6 +24,12 @@
     "originalDefaultMessage": "编辑"
   },
   {
+    "id": "edit_proof",
+    "description": "title of edit proof button",
+    "defaultMessage": "修改论据",
+    "originalDefaultMessage": "修改论据"
+  },
+  {
     "id": "edit_topic",
     "description": "title of edit topic button",
     "defaultMessage": "修改新主题",
@@ -46,6 +40,18 @@
     "description": "title of next page button",
     "defaultMessage": "下一页",
     "originalDefaultMessage": "下一页"
+  },
+  {
+    "id": "no_conlisions_found",
+    "description": "placeholder of conclusion list",
+    "defaultMessage": "没有相关结论",
+    "originalDefaultMessage": "没有相关结论"
+  },
+  {
+    "id": "no_topics_found",
+    "description": "placeholder of topic list",
+    "defaultMessage": "没有相关主题",
+    "originalDefaultMessage": "没有相关主题"
   },
   {
     "id": "prev_page",
@@ -94,6 +100,12 @@
     "description": "title of sign in button",
     "defaultMessage": "登录",
     "originalDefaultMessage": "登录"
+  },
+  {
+    "id": "signout",
+    "description": "title of sign out button",
+    "defaultMessage": "登出",
+    "originalDefaultMessage": "登出"
   },
   {
     "id": "subscribe",
