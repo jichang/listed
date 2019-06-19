@@ -59,4 +59,10 @@ export class TopicsController {
 
     return topic;
   }
+
+  @Get('/topics/:id/rss.xml')
+  @UseGuards(UserGuard)
+  async getRss(@Param() { id }: { id: string }, @Req() req) {
+    return await this.topicsService.getRSS(req.user, id);
+  }
 }

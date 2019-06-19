@@ -2,6 +2,7 @@
   margin: 0 auto;
 
   width: 30rem;
+  max-width: 100%;
 }
 
 .form__field {
@@ -20,5 +21,5 @@
 }
 
 .form__field.form__field--action {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }

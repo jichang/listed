@@ -2,6 +2,7 @@
   margin: 0 auto;
 
   width: 30rem;
+  max-width: 100%;
 }
 
 .form__field {

@@ -298,4 +298,73 @@ export class TopicsService {
       throw e;
     }
   }
+
+  async getRSS(user: IUser, topicId: string) {
+    let client = await this.databaseService.pool.connect();
+    try {
+      let sql = `
+      SELECT
+        id,
+        user_id,
+        title,
+        description,
+        type,
+        created_time,
+        updated_time,
+        status
+      FROM listed.topics
+      WHERE id = $1
+      `;
+      let { rows: topicRows } = await client.query(sql, [topicId]);
+
+      let topicRow = topicRows[0];
+
+      let subscription = null;
+      if (user) {
+        sql = `
+        SELECT
+          id,
+          created_time,
+          updated_time,
+          status
+        FROM listed.subscriptions
+        WHERE user_id = $1 AND topic_id = $2
+        `;
+        let { rows: subscriptionRows } = await client.query(sql, [
+          user.id,
+          topicId,
+        ]);
+        let subscriptionRow = subscriptionRows[0];
+        if (subscriptionRow) {
+          subscription = {
+            id: subscriptionRow.id,
+            createdTime: subscriptionRow.created_time,
+            updatedTime: subscriptionRow.updated_time,
+            status: subscriptionRow.status,
+          };
+        }
+      }
+
+      client.release();
+
+      let topic: ITopic = {
+        id: topicRow.id,
+        isOwner: !!user && topicRow.user_id === user.id,
+        title: topicRow.title,
+        description: topicRow.description,
+        type: topicRow.type as TopicType,
+        subscription,
+        createdTime: topicRow.created_time,
+        updatedTime: topicRow.updated_time,
+        status: topicRow.status,
+      };
+
+      return {
+        topic,
+      };
+    } catch (e) {
+      client.release();
+      throw e;
+    }
+  }
 }
