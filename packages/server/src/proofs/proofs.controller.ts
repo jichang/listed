@@ -13,7 +13,7 @@ import { UserGuard } from '../user.guard';
 
 @Controller('/api/v1')
 export class ProofsController {
-  constructor(private readonly proofsService: ProofsService) {}
+  constructor(private readonly proofsService: ProofsService) { }
 
   @Get('/topics/:proofId/conclusions/:conclusionId/proofs/:proofId')
   @UseGuards(UserGuard)
@@ -35,7 +35,7 @@ export class ProofsController {
     @Param()
     { topicId, conclusionId, proofId }: ProofParams,
     @Req() req,
-    @Body() { content }: { content: string },
+    @Body() { title, content }: { title: string, content: string },
   ) {
     let { proof } = await this.proofsService.update(
       req.user,
@@ -44,7 +44,7 @@ export class ProofsController {
         conclusionId,
         proofId,
       },
-      { content },
+      { title, content },
     );
 
     return proof;

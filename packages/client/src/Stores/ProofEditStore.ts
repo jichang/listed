@@ -3,6 +3,7 @@ import { TopicType, ITopic, Option, IProof } from "@listed/shared";
 
 export class ProofEditStore {
   @observable proof: Option<IProof> = null;
+  @observable title: string = "";
   @observable content: string = "";
 
   @action.bound
@@ -29,7 +30,13 @@ export class ProofEditStore {
   @action.bound
   updateProof({ proof }: { proof: IProof }) {
     this.proof = proof;
+    this.title = proof.title;
     this.content = proof.content;
+  }
+
+  @action.bound
+  updateTitle(title: string) {
+    this.title = title;
   }
 
   @action.bound
@@ -48,6 +55,7 @@ export class ProofEditStore {
     }
 
     let params = {
+      title: this.title,
       content: this.content
     };
 
@@ -79,6 +87,7 @@ export class ProofEditStore {
   @action.bound
   reset() {
     this.proof = null;
+    this.title = "";
     this.content = "";
   }
 }

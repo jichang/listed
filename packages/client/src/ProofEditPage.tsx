@@ -61,6 +61,10 @@ export class ProofEditPage extends Component<
     this.props.history.push(`/topics/${params.topicId}`);
   }
 
+  updateTitle = (evt: ChangeEvent<HTMLInputElement>) => {
+    proofEditStore.updateTitle(evt.target.value);
+  };
+
   updateContent = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     proofEditStore.updateContent(evt.target.value);
   };
@@ -79,6 +83,20 @@ export class ProofEditPage extends Component<
 
         {this.tabItems[0].state === "active" ? (
           <form className="form" onSubmit={evt => this.update(evt)}>
+            <div className="form__field">
+              <label className="form__field__label">
+                <FormattedMessage
+                  id="topic"
+                  defaultMessage="主题"
+                  description="title of topic"
+                />
+              </label>
+              <input
+                className="form__control"
+                onChange={this.updateTitle}
+                value={proofEditStore.title}
+              />
+            </div>
             <div className="form__field">
               <label className="form__field__label">
                 <FormattedMessage
@@ -107,6 +125,7 @@ export class ProofEditPage extends Component<
 
         {this.tabItems[1].state === "active" ? (
           <div className="proof">
+            <h4>{proofEditStore.title}</h4>
             <ReactMarkdown source={proofEditStore.content} />
           </div>
         ) : null}

@@ -55,17 +55,26 @@ export class ConclusionCreatePage extends Component<
             <Badge onClick={conclusionCreateStore.createProof}>+</Badge>
           </div>
           {conclusionCreateStore.proofs.map((proof, index) => {
-            return (
+            return [
+              <div className="form__field" key={index}>
+                <input
+                  onChange={evt =>
+                    conclusionCreateStore.updateProofTitle(evt, index)
+                  }
+                  className="form__control"
+                  value={proof.title}
+                />
+              </div>,
               <div className="form__field" key={index}>
                 <textarea
                   onChange={evt =>
-                    conclusionCreateStore.updateProof(evt, index)
+                    conclusionCreateStore.updateProofContent(evt, index)
                   }
                   className="form__control"
                   value={proof.content}
                 />
               </div>
-            );
+            ];
           })}
           {conclusionCreateStore.proofs.length === 0 ? (
             <div className="proofs__placeholder">create conclusion</div>
@@ -73,7 +82,7 @@ export class ConclusionCreatePage extends Component<
           <div className="form__field form__field--action">
             <button className="button button--primary button--block">
               <FormattedMessage
-                id="publish_conclustion"
+                id="publish_topic"
                 defaultMessage="发布新论点"
                 description="title of publish conclusion button"
               />

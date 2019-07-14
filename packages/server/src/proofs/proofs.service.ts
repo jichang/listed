@@ -10,7 +10,7 @@ export interface ProofParams {
 
 @Injectable()
 export class ProofsService {
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(private readonly databaseService: DatabaseService) { }
 
   async getOne(user: IUser, params: ProofParams) {
     let client = await this.databaseService.pool.connect();
@@ -19,6 +19,7 @@ export class ProofsService {
       SELECT
         id,
         user_id,
+        title,
         content,
         created_time,
         updated_time,
@@ -36,6 +37,7 @@ export class ProofsService {
       let proof: IProof = {
         id: row.id,
         isOwner: row.user_id === user.id,
+        title: row.title,
         content: row.content,
         createdTime: row.created_time,
         updatedTime: row.updated_time,
@@ -56,13 +58,13 @@ export class ProofsService {
   async update(
     user: IUser,
     params: ProofParams,
-    { content }: { content: string },
+    { title, content }: { title: string, content: string },
   ) {
     let client = await this.databaseService.pool.connect();
     try {
       let sql = `
       UPDATE listed.proofs
-      SET content = $4, updated_time = now()
+      SET title=$4, content = $5, updated_time = now()
       WHERE user_id = $1 AND conclusion_id = $2 AND id = $3
       RETURNING *
       `;
@@ -70,6 +72,7 @@ export class ProofsService {
         user.id,
         params.conclusionId,
         params.proofId,
+        title,
         content,
       ]);
 
@@ -77,6 +80,7 @@ export class ProofsService {
       let proof: IProof = {
         id: row.id,
         isOwner: row.user_id === user.id,
+        title: row.title,
         content: row.content,
         createdTime: row.created_time,
         updatedTime: row.updated_time,

@@ -59,6 +59,7 @@ export interface ITopic {
 export interface IConclusionCreateParams {
   title: string;
   proofs: {
+    title: string,
     content: string;
   }[];
 }
@@ -76,6 +77,7 @@ export interface IConclusion {
 export interface IProof {
   id: string;
   isOwner: boolean;
+  title: string;
   content: string;
   createdTime: string;
   updatedTime: string;

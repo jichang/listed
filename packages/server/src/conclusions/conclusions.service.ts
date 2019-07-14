@@ -10,7 +10,7 @@ import { DatabaseService } from '../database/database.service';
 
 @Injectable()
 export class ConclusionsService {
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(private readonly databaseService: DatabaseService) { }
 
   async getAll(
     user: IUser,
@@ -62,6 +62,7 @@ export class ConclusionsService {
               return {
                 id: row.id,
                 isOwner,
+                title: row.title,
                 content: row.content,
                 createdTime: row.created_time,
                 updatedTime: row.updated_time,
@@ -131,12 +132,13 @@ export class ConclusionsService {
 
       for (let proof of params.proofs) {
         let sql = `
-        INSERT INTO listed.proofs(user_id, conclusion_id, content)
-        VALUES ($1, $2, $3)
+        INSERT INTO listed.proofs(user_id, conclusion_id, title, content)
+        VALUES ($1, $2, $3, $4)
         RETURNING *`;
         let { rows } = await client.query(sql, [
           user.id,
           conclusion.id,
+          proof.title,
           proof.content,
         ]);
 
@@ -144,6 +146,7 @@ export class ConclusionsService {
         conclusion.proofs.items.push({
           id: row.id,
           isOwner: true,
+          title: row.title,
           content: row.content,
           createdTime: row.created_time,
           updatedTime: row.updated_time,

@@ -9,12 +9,33 @@ export interface IProofProps {
   proof: IProof;
 }
 
-export class Proof extends React.Component<IProofProps> {
+export interface IProofState {
+  isOpen: boolean;
+}
+
+export class Proof extends React.Component<IProofProps, IProofState> {
+  constructor(props: IProofProps) {
+    super(props);
+
+    this.state = {
+      isOpen: false
+    };
+  }
+
+  toggleState = () => {
+    this.setState(prevState => {
+      return { isOpen: !prevState.isOpen };
+    });
+  };
+
   render() {
     const { proof } = this.props;
+    const { isOpen } = this.state;
+
     return (
       <div className="proof">
-        <ReactMarkdown source={proof.content} />
+        <h4 onClick={this.toggleState}>{proof.title}</h4>
+        {isOpen ? <ReactMarkdown source={proof.content} /> : null}
       </div>
     );
   }

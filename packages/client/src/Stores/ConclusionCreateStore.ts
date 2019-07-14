@@ -4,7 +4,7 @@ import { ChangeEvent } from "react";
 export class ConclusionCreateStore {
   @observable topicId: string = "";
   @observable title: string = "";
-  @observable proofs: { content: string }[] = [];
+  @observable proofs: { title: string, content: string }[] = [];
 
   @action.bound
   async create() {
@@ -30,7 +30,7 @@ export class ConclusionCreateStore {
 
         this.reset();
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   @action.bound
@@ -41,12 +41,18 @@ export class ConclusionCreateStore {
   @action.bound
   createProof() {
     this.proofs.push({
+      title: "",
       content: ""
     });
   }
 
   @action.bound
-  updateProof(evt: ChangeEvent<HTMLTextAreaElement>, index: number) {
+  updateProofTitle(evt: ChangeEvent<HTMLInputElement>, index: number) {
+    this.proofs[index].title = evt.target.value;
+  }
+
+  @action.bound
+  updateProofContent(evt: ChangeEvent<HTMLTextAreaElement>, index: number) {
     this.proofs[index].content = evt.target.value;
   }
 
