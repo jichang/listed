@@ -81,11 +81,7 @@ export class ConclusionCreatePage extends Component<
           ) : null}
           <div className="form__field form__field--action">
             <button className="button button--primary button--block">
-              <FormattedMessage
-                id="publish_topic"
-                defaultMessage="发布新论点"
-                description="title of publish conclusion button"
-              />
+              <FormattedMessage id="publish_topic" />
             </button>
           </div>
         </form>

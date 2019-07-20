@@ -72,16 +72,16 @@
     "originalDefaultMessage": "论据"
   },
   {
+    "id": "proof-title",
+    "description": "title of proof",
+    "defaultMessage": "论据 {index}",
+    "originalDefaultMessage": "论据 {index}"
+  },
+  {
     "id": "public",
     "description": "public topic",
     "defaultMessage": "公开",
     "originalDefaultMessage": "公开"
-  },
-  {
-    "id": "publish_conclustion",
-    "description": "title of publish conclusion button",
-    "defaultMessage": "发布新论点",
-    "originalDefaultMessage": "发布新论点"
   },
   {
     "id": "publish_topic",
@@ -94,6 +94,12 @@
     "description": "title of publsihed time",
     "defaultMessage": "发布于",
     "originalDefaultMessage": "发布于"
+  },
+  {
+    "id": "see-details",
+    "description": "see details",
+    "defaultMessage": "查看详情",
+    "originalDefaultMessage": "查看详情"
   },
   {
     "id": "signin",

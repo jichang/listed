@@ -14,6 +14,7 @@ const globby = require("globby");
       if (!sameIdMessage) {
         results.push(message);
       } else if (sameIdMessage.defaultMessage !== message.defaultMessage) {
+        console.log(message, sameIdMessage);
         throw new Error(
           "found message with same id (",
           sameIdMessage.id,

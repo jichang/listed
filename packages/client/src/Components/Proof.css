@@ -1,3 +1,11 @@
+.proof .button {
+  display: inline-block;
+  margin-left: 0.25rem;
+
+  color: #666666;
+  font-size: 14px;
+}
+
 .proof code {
   color: #333333;
 
